@@ -24,6 +24,7 @@
 ScriptBitAutomatizacion/src/consultas/salida/VentasTotal/ 
 ScriptBitAutomatizacion/src/consultas/salidad/GELVEZ_212401/
 ScriptBitAutomatizacion/src/consultas/salida/CUCU_COLGATE_210973/
+ScriptBitAutomatizacion/src/modulos/.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -34,6 +35,7 @@ salida/
 /ScriptBitAutomatizacion/src/consultas/salida/*.zip
 # C extensions
 *.so
+*.env
 .env
 # Distribution / packaging
 .Python
