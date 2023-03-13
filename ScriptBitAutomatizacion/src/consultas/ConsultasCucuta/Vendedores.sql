@@ -44,7 +44,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
     --T1."DocDate" BETWEEN '[%1]' AND '[%2]'
-	T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
+	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 	--AND T8."ItmsGrpCod" IN ()	--	Buscar por códigos
 	AND T8."ItmsGrpCod" = {0}
 AND T2."WhsCode" IN  ({1})	--	bodega
@@ -95,7 +95,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
     --T1."DocDate" BETWEEN '[%1]' AND '[%2]'
-	T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
+	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 	--AND T8."ItmsGrpCod" IN ()	--	Buscar por códigos
 	AND T8."ItmsGrpCod" = {0}
 AND T2."WhsCode" IN ({1})	--	Bodega

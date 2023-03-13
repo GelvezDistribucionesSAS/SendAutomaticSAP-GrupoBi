@@ -27,7 +27,7 @@ class ReadSQL:
         self.__BARRIOSTOTAL = 'BarrioTotal.sql'
         self.__CLIENTESTOTAL = 'ClientesTotal.sql'
         self.__INVENTARIOTOTAL = 'IventarioTotal.sql'
-        self.__PRODUCTOSTOTAL = 'productosTotal.sql'
+        self.__PRODUCTOSTOTAL = 'ProductosTotal.sql'
         self.__SELLIN = 'Sellin.sql'
         self.__TOTALESTOTAL = 'TotalesTotal.sql'
         self.__VENDEDORESTOTAL = 'VendedoresTotal.sql'

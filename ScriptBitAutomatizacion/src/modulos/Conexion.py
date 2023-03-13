@@ -12,9 +12,9 @@ import dotenv
 dotenv.load_dotenv()
 def conect():
     conn = dbapi.connect(
-    address=os.getenv('SERVER'),
+    address= os.getenv('SERVER'),
     port='30015',
-    user= os.getenv('USER'),
+    user= os.getenv('USERDB'),
     password= os.getenv('PASSWORD')
     )
     print("conectado")

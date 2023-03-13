@@ -2,7 +2,7 @@
 import os
 
 from .Conexion import conexion
-from .ConvertirData import PasarArreglo, GuardarTexto, month_start_control
+from .ConvertirData import PasarArreglo, GuardarTexto
 from ..consultas.SalidaData import ReadSQL
 #from ..consultas.Salidad.Diccionario import *
 from .VariablesGlobales import *
@@ -10,12 +10,15 @@ from .VariablesGlobales import *
 
 #Estructuras de control 
 class GenerateFiles(ReadSQL):
-    def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB):
+    def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB, DateEnter, monthd):
         self.house_route = house_route
         self.number_house = number_house
         self.userFTP = userFTP
         self.password = password
         self.store = store
+        self.DateEnter = DateEnter
+        self.monthd = monthd
+        
         ReadSQL.__init__(self,schemeDB)
     #Salida de municipios
     def output_municipality(self):
@@ -25,14 +28,14 @@ class GenerateFiles(ReadSQL):
         print('Se genero: '+ MUNICIPIOS)
         
     def output_customers(self):
-        text =self.read_customers().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text =self.read_customers().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + CLIENTES))
         print('Se genero: ' + CLIENTES)
     
     def output_inventory(self):
-        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
@@ -46,35 +49,35 @@ class GenerateFiles(ReadSQL):
         print('Se Genero: ' + TIPOSNEGOCIOS)
     
     def output_totals(self):
-        text = self.read_totals().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_totals().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + TOTALES))
         print('Se Genero: ' + TOTALES)
 
     def output_sellers(self):
-        text = self.read_sellers().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_sellers().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENDEDORES))
         print('Se Genero: ' + VENDEDORES)
     
     def output_sales(self):
-        text = self.read_sales().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_sales().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
         print('Se Genero: ' + VENTAS)
 
     def output_products(self):
-        text = self.read_products().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_products().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
         print('Se Genero: ' + SKU)
     
     def output_neighborhood(self):
-        text = self.read_neighborhood().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_neighborhood().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + BARRIOS))
@@ -83,21 +86,21 @@ class GenerateFiles(ReadSQL):
     #Salidas especiales
 
     def output_inventory_colgate(self):
-        text = self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, month_start_control())
+        text = self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + INVENTARIO))
         print('Se Genero: ' + INVENTARIO)
     
     def output_product_colgate(self):
-        text = self.read_product_colgate().format(self.number_house, self.store, month_start_control())
+        text = self.read_product_colgate().format(self.number_house, self.store, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
         print('Se Genero: ' + SKU)
 
     def output_sales_colgate(self):
-        text = self.read_sales_colgate().format(self.number_house, month_start_control())
+        text = self.read_sales_colgate().format(self.number_house, self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
@@ -106,21 +109,21 @@ class GenerateFiles(ReadSQL):
     #Genered Totals
 
     def output_neighborhood_total(self):
-        text = self.read_neighborhood_gelvez().format(month_start_control())
+        text = self.read_neighborhood_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + BARRIOS))
         print('Se genero: ' + BARRIOS)
         
     def output_customers_total(self):
-        text =self.read_cunstomer_gelvez().format(month_start_control())
+        text =self.read_cunstomer_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + CLIENTES))
         print('Se genero: ' + CLIENTES)
     
     def output_inventory_total(self):
-        text =self.read_inventory_gelvez().format(month_start_control())
+        text =self.read_inventory_gelvez().format(self.DateEnter, self.monthd)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
@@ -134,35 +137,35 @@ class GenerateFiles(ReadSQL):
         print('Se Genero: ' + TIPOSNEGOCIOS)
     
     def output_totals_total(self):
-        text = self.read_totals_gelvez().format(month_start_control())
+        text = self.read_totals_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + TOTALES))
         print('Se Genero: ' + TOTALES)
 
     def output_sellers_total(self):
-        text = self.read_sellers_gelvez().format(month_start_control())
+        text = self.read_sellers_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENDEDORES))
         print('Se Genero: ' + VENDEDORES)
     
     def output_sales_total(self):
-        text = self.read_sales_Gelvez().format(month_start_control())
+        text = self.read_sales_Gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
         print('Se Genero: ' + VENTAS)
 
     def output_products_total(self):
-        text = self.read_products_gelvez().format(month_start_control())
+        text = self.read_products_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
         print('Se Genero: ' + SKU)
     
     def output_sellin_total(self):
-        text = self.read_sellin_gelvez().format(month_start_control())
+        text = self.read_sellin_gelvez().format(self.DateEnter)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SELLIN))

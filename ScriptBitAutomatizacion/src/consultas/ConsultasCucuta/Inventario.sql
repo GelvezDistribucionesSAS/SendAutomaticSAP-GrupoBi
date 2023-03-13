@@ -8,7 +8,7 @@ SELECT
 FROM
     {2}.OINM TA
 WHERE
-        (TA."CreateDate" <=LAST_DAY(ADD_MONTHS(CURRENT_DATE,-{3}))) AND TA."ItemCode" = T0."ItemCode" 
+        (TA."CreateDate" <=LAST_DAY(ADD_MONTHS({4}))) AND TA."ItemCode" = T0."ItemCode" 
         AND (TA."Warehouse" in ({1}))
     ),0) AS INT),'0') || '#' ||
 IFNULL(T1."InvntryUom",'')) AS "Inventario"
@@ -17,7 +17,7 @@ IFNULL(T1."InvntryUom",'')) AS "Inventario"
     INNER JOIN {2}.OITB T2 ON T2."ItmsGrpCod" = T1."ItmsGrpCod"
 WHERE
     (
-        T0."CreateDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
+        T0."CreateDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
     ) AND T2."ItmsGrpCod" = {0}
     AND (T0."Warehouse" IN ({1}) )
     GROUP BY T0."ItemCode", LAST_DAY(T0."CreateDate"), T1."InvntryUom"--,T1."SuppCatNum"

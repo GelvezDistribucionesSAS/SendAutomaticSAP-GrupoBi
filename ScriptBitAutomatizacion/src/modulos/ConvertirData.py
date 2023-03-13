@@ -1,6 +1,9 @@
-from .VariablesGlobales import RutaGlobal
+from .VariablesGlobales import *
 from .EnvioEmail import correo as cr
 import datetime
+
+
+
 """
 Modulo encargado de realizar el proceso del envio de la información junton con el procesamiento logico de la lectura dentro
 de arreglos para el recorrido de los mismos. 
@@ -35,7 +38,7 @@ def LogError(Data):
 Funcción encarga de guardar el texto generado depues el procesamiento de los datos. 
 """
 def GuardarTexto(Ingrese ,Ruta):
-    with open(Ruta, "w",encoding='utf-8') as f:
+    with open(Ruta, "w",encoding='utf-8-sig') as f:
         for j in Ingrese:
             if j == "None":
                 print("Error line vacia")
@@ -46,11 +49,6 @@ def GuardarTexto(Ingrese ,Ruta):
             #print("Ingreso")
     f.close()
 
-#Define el inicio del mes
-def month_start_control():
-    x = datetime.datetime.now()
-    if x.strftime("%d") == "01":
-        return 2
-    else:
-        return 1
-            
+
+
+

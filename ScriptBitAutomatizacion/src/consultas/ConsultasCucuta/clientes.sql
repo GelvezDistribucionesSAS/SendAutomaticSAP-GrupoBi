@@ -6,11 +6,11 @@ SELECT
 	T1."CardName" || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
-	CONCAT(T3."StreetS",CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
+	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
 	--(SELECT CONCAT(TA."Street",CONCAT(' ',TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion",
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
 	'SIN REPRESENTANTE' || '#' ||
-	T3."U_HBT_MunMedS" || '#' ||
+	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
 	T6."GroupCode" ) AS "Clientes"
 --	DOCUMENTO
 FROM
@@ -50,7 +50,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 
-	T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
+	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 
 	AND T8."ItmsGrpCod" = {0}
 AND T2."WhsCode" IN ({1})
@@ -63,11 +63,11 @@ SELECT
 	T1."CardName" || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
-	CONCAT(T3."StreetS",CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
+	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
 	--(SELECT CONCAT(TA."Street",CONCAT(' ',TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion",
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
 	'SIN REPRESENTANTE' || '#' ||
-	T3."U_HBT_MunMedS" || '#' ||
+	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
 	T6."GroupCode" ) AS "Clientes"
 --	DOCUMENTO
 FROM
@@ -107,7 +107,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 
-	T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
+	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 
 	AND T8."ItmsGrpCod" = {0}
 AND T2."WhsCode" IN ({1})) AS "TA"
