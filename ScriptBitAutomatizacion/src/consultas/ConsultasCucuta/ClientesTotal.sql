@@ -2,7 +2,7 @@ SELECT DISTINCT * FROM(SELECT
 	DISTINCT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	T1."CardName" || '#' ||
+	IFNULL(T1."CardName",'NN') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
@@ -66,7 +66,7 @@ SELECT
 	DISTINCT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	T1."CardName" || '#' ||
+	IFNULL(T1."CardName",'NN') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
@@ -131,7 +131,7 @@ SELECT DISTINCT * FROM (SELECT
 	DISTINCT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	T1."CardName" || '#' ||
+	IFNULL(T1."CardName",'NN') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
@@ -196,7 +196,7 @@ SELECT
 	DISTINCT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	T1."CardName" || '#' ||
+	IFNULL(T1."CardName",'NN') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||

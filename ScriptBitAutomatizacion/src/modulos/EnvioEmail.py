@@ -9,7 +9,7 @@ from email.message import EmailMessage
 def correo():
     remitente = "sistemasgelvez@gmail.com"
     destnario = "sistemas@gelvezdistribuciones.com"
-    mensaje = "Hola esta es una pruebas"
+    mensaje = "Error de generación de Archivos de Grupo BIT"
     email = EmailMessage()
     email["From"] = remitente
     email["To"] = destnario

@@ -9,8 +9,7 @@ FROM (
 		T1."DocNum" AS "NumeroDocumento",
 		T2."Quantity" AS "Cantidad",
 		(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) AS "Valor",
-		0 AS "Tipo",
-		(T2."StockValue") AS "Costo"
+		0 AS "Tipo"
 --	DOCUMENTO
 	FROM
 		{2}."OINV" T1
@@ -64,8 +63,8 @@ AND T2."WhsCode" IN ({1})	--	bodega
 		T1."DocNum" AS "NumeroDocumento",
 		-T2."Quantity" AS "Cantidad",
 		-(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) AS "Valor",
-		1 AS "Tipo",
-		-(T2."StockValue") AS "Costo"
+		1 AS "Tipo"
+		
 --	DOCUMENTO
 	FROM
 		{2}."ORIN" T1

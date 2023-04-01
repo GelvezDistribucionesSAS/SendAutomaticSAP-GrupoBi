@@ -7,11 +7,11 @@ SELECT
               END || '#' ||
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
-	cast(T2."Quantity" as int) || '#' ||
+	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
 	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
 	0 || '#' ||
-	cast(T2."StockValue" as int) || '#' ||
-IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'') || '#' ||
+	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
+IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD') || '#' ||
 T2."WhsCode" || '#' ||
             CASE T2."WhsCode"
 WHEN '006' THEN 'PRINCIPAL CUCUTA'
@@ -74,11 +74,11 @@ SELECT
               END || '#' ||
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
-	cast(-T2."Quantity" as int) || '#' ||
-	IFNULL(round(-(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
-	1 || '#' ||
-	cast(-(T2."StockValue")as int) || '#' ||
-IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'') || '#' ||
+	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
+	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
+	0 || '#' ||
+	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
+IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD')|| '#' ||
 T2."WhsCode" || '#' ||
             CASE T2."WhsCode"
 WHEN '006' THEN 'PRINCIPAL CUCUTA'
@@ -145,11 +145,11 @@ SELECT
               END || '#' ||
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
-	cast(T2."Quantity" as int) || '#' ||
+	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
 	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
 	0 || '#' ||
-	cast(T2."StockValue" as int) || '#' ||
-IFNULL(T7."InvntryUom",T7."SalUnitMsr") || '#' ||
+	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
+IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD') || '#' ||
 T2."WhsCode" || '#' ||
            CASE T2."WhsCode"
 WHEN '010' THEN 'PRINCIPAL CALI'
@@ -213,11 +213,11 @@ SELECT
               END || '#' ||
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
-	cast(-T2."Quantity" as int) || '#' ||
+	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
 	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
-	1 || '#' ||
-	cast(-(T2."StockValue")as int) || '#' ||
-IFNULL(T7."InvntryUom",T7."SalUnitMsr") || '#' ||
+	0 || '#' ||
+	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
+IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD') || '#' ||
 T2."WhsCode" || '#' ||
            CASE T2."WhsCode"
 WHEN '010' THEN 'PRINCIPAL CALI'

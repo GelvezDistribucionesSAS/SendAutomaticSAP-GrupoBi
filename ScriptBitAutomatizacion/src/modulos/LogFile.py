@@ -57,7 +57,7 @@ class ExecutionHouse:
     
     @count_elapsed_time
     def nestlecucuta():
-        ns = GenerateFiles(cu_NESTLE_212385, 154, os.getenv('USERNESTLECUCUTA'), os.getenv('PASSWORDNESTLECUCUTA'), '006', 'HBTGELVEZ_CUCUTA',varData, monht)
+        ns = GenerateFiles(cu_NESTLE_212385, 154, os.getenv('USERNESTLECUCUTA'), os.getenv('PASSWORDNESTLECUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
         ns.output_municipality()
         ns.output_customers()
         ns.output_business_type()
@@ -72,7 +72,7 @@ class ExecutionHouse:
         send_FTP(ns.userFTP,ns.password,RutaGlobal,ns.house_route,NestleCucuta.format(enter))
     
     def cucuta_edgewell():
-        be = GenerateFiles(cu_EDGEWELL_209759, 156, os.getenv('USEREDGEWELLCUCUTA'), os.getenv('PASSWORDEDGEWELLCUCUTA'), '006', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_EDGEWELL_209759, 156, os.getenv('USEREDGEWELLCUCUTA'), os.getenv('PASSWORDEDGEWELLCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -112,7 +112,7 @@ class ExecutionHouse:
         LimpiarRuta(RutaGlobal + be.house_route)
 
     def cucuta_kimberly_ICH():
-        be = GenerateFiles(cu_KIMBERLY_208903, 144, os.getenv('USERICHCUCUTA'), os.getenv('PASSWORDICHCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_KIMBERLY_208903, 144, os.getenv('USERICHCUCUTANEW'), os.getenv('PASSWORDICHCUCUTA'), '006', 'HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -127,7 +127,7 @@ class ExecutionHouse:
     
 
     def cucuta_kimberly_pañaleras():
-        be = GenerateFiles(cu_PAÑ_KIMBERLY_209321, 145, os.getenv('USERICHCUCUTAPA'), os.getenv('PASSWORDICHCUCUTAPA'), '006,030','HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_PAÑ_KIMBERLY_209321, 145, os.getenv('USERICHCUCUTAPA'), os.getenv('PASSWORDICHCUCUTAPA'), '006','HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -167,7 +167,7 @@ class ExecutionHouse:
         LimpiarRuta(RutaGlobal + be.house_route)  
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,kimberlyPañGiron.format(enter))
     def Giron_kimberly_ICH():
-        be = GenerateFiles(gir_ICH_KIMBERLY_209968, 144, os.getenv('USERCALIICH '), os.getenv('PASSWORDCALIICH'), '014', 'HBTGRANDISTRIBUIDOR',varData, monht)
+        be = GenerateFiles(gir_ICH_KIMBERLY_209968, 144, os.getenv('USERGIRONICH'), os.getenv('PASSWORDGIRONICH'), '014', 'HBTGRANDISTRIBUIDOR',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
