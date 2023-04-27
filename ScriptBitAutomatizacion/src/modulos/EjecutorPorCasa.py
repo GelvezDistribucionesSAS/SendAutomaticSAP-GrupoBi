@@ -86,7 +86,7 @@ class GenerateFiles(ReadSQL):
     #Salidas especiales
 
     def output_inventory_colgate(self):
-        text = self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + INVENTARIO))
