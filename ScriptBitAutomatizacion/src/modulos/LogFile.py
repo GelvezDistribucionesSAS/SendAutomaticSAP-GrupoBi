@@ -36,7 +36,7 @@ def count_elapsed_time(f):
         return ret
     
     return wrapper
-varData , monht, enter =control()
+varData , monht, enter = control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
@@ -216,7 +216,8 @@ class ExecutionHouse:
         be.output_sales()
         be.output_sellers()
         be.output_totals()
-        Comprimir01(be.house_route,nestleGiron.format(enter))
+        be.output_neighborhood()
+        ComprimirNestle(be.house_route,nestleGiron.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
     

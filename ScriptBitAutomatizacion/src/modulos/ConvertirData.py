@@ -35,17 +35,17 @@ def LogError(Data):
         
 
 """
-Funcción encarga de guardar el texto generado depues el procesamiento de los datos. 
+Funcción encargada de guardar el texto generado depues el procesamiento de los datos. 
 """
 def GuardarTexto(Ingrese ,Ruta):
-    with open(Ruta, "w",encoding='utf-8-sig') as f:
+    with open(Ruta, "w",encoding='utf-8') as f:
         for j in Ingrese:
             if j == "None":
                 print("Error line vacia")
                 LogError(Data="Error en el siguiente Archivo: "+Ruta )
                 break
             else: 
-                f.write(j+"\n")
+                f.write(str(j)+"\n")
             #print("Ingreso")
     f.close()
 

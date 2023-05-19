@@ -73,18 +73,22 @@ def month_start_control():
     else:
         return 1
       
-def timed_input(prompt="", timeout=5):
+def timed_input(prompt="", timeout=5) -> int:
     sel = selectors.DefaultSelector()
     sel.register(sys.stdin, selectors.EVENT_READ, input)
 
     respuesta = None
     print(prompt, end="")
     events = sel.select(timeout=timeout)
-    if events:
-        respuesta = input()
-    else:
-        respuesta = 0
-    return respuesta
+    try:
+        if events:
+            respuesta = input()
+        else:
+            respuesta = 0
+            return respuesta
+    except EOFError :
+        return 0
+    
 
 
 def control():
