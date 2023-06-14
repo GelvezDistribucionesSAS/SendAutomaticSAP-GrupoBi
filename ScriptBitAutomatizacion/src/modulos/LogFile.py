@@ -36,13 +36,13 @@ def count_elapsed_time(f):
         return ret
     
     return wrapper
-varData , monht, enter = control()
+varData , monht, enter, mes, years= control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
     @count_elapsed_time
     def bellezacucuta():
-        be = GenerateFiles(Belleza, 157, 'user_falta', 'password_falta', '006', 'HBTGELVEZ_CUCUTA', varData, monht)
+        be = GenerateFiles(Belleza, 157, os.getenv('USERBELLEZACUCUTA'), os.getenv('PASSWORDBELLEZA'), '006', 'HBTGELVEZ_CUCUTA', varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -53,6 +53,7 @@ class ExecutionHouse:
         be.output_totals()
         Comprimir01(be.house_route,BellezaCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password,RutaGlobal, be.house_route, BellezaCucuta.format(enter))
        
     
     @count_elapsed_time
@@ -72,7 +73,7 @@ class ExecutionHouse:
         send_FTP(ns.userFTP,ns.password,RutaGlobal,ns.house_route,NestleCucuta.format(enter))
     
     def cucuta_edgewell():
-        be = GenerateFiles(cu_EDGEWELL_209759, 156, os.getenv('USEREDGEWELLCUCUTA'), os.getenv('PASSWORDEDGEWELLCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_EDGEWELL_209759, 156, os.getenv('USEREDGEWELLCUCUTA'), os.getenv('PASSWORDEDGEWELLCUCUTA'), '006,030,011', 'HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -86,7 +87,7 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,EdgewellCucuta.format(enter))
     
     def cucuta_energizer():
-        be = GenerateFiles(cu_ENERGIZER_210760, 151, 'user_falta', 'password_falta', '006', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_ENERGIZER_210760, 151, os.getenv('USERCUCUTAENERGIZER'), os.getenv('PASSWORDCUCUTAENERGIZER'), '006', 'HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -97,9 +98,10 @@ class ExecutionHouse:
         be.output_totals()
         Comprimir01(be.house_route,EnergeizerCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,EnergeizerCucuta.format(enter))
 
     def cucuta_HDV():
-        be = GenerateFiles(cu_HDV_208514, 151, 'user_falta', 'password_falta', '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_HDV_208514, 151, os.getenv('USERHDVCUCUTA'), os.getenv('PASSWORDHDVCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -110,6 +112,7 @@ class ExecutionHouse:
         be.output_totals()
         Comprimir01(be.house_route,HdvCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, HdvCucuta.format(enter))
 
     def cucuta_kimberly_ICH():
         be = GenerateFiles(cu_KIMBERLY_208903, 144, os.getenv('USERICHCUCUTANEW'), os.getenv('PASSWORDICHCUCUTA'), '006', 'HBTGELVEZ_CUCUTA',varData, monht)
@@ -141,17 +144,19 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,KimberlyPañCucuta.format(enter))
 
     def cucuta_colgate():
-        be = GenerateFiles(cu_COLGATE_210973, 150, 'user_falta', 'password_falta', '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_COLGATE_210973, 150, os.getenv('USERCOLGATECUCUTA'), os.getenv('PASSWORDCOLGATECUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        #print(mes, año)
         be.output_municipality()
-        be.output_customers()
-        be.output_business_type()
+        be.output_customers_colgate()
+        be.output_business_type_colgate()
         be.output_inventory_colgate()
         be.output_product_colgate()
         be.output_sales_colgate()
-        be.output_sellers()
-        be.output_totals()
+        be.output_sellers_colgate()
+        be.output_totales_colgate()
         Comprimir01(be.house_route,ColgateCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, ColgateCucuta.format(enter))
         
     def cali_pañ_kimberly():
         be = GenerateFiles(CAL_PAÑ_KIMBERLY_210541, 145, os.getenv('USERCALIICH'),os.getenv('PASSWORDCALIICH'),'010,019', 'HBTGRANDISTRIBUIDOR',varData, monht)
@@ -193,8 +198,9 @@ class ExecutionHouse:
         Comprimir01(be.house_route,edgewellGiron.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route, edgewellGiron.format(enter))
+
     def giron_eveready():
-        be = GenerateFiles(gir_EVEREADY_210761, 151, 'user_falta', 'password_falta', '014', 'HBTGRANDISTRIBUIDOR',varData, monht)
+        be = GenerateFiles(gir_EVEREADY_210761, 151, os.getenv('USERENEGIZERGIRON'), os.getenv('PASSWORDENERGIZERGIRON'), '014', 'HBTGRANDISTRIBUIDOR',varData, monht)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -205,6 +211,7 @@ class ExecutionHouse:
         be.output_totals()
         Comprimir01(be.house_route,energeizerGiron.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, energeizerGiron.format(enter) )
 
     def giron_nestle():
         be = GenerateFiles(gir_NESTLE_211851, 154, os.getenv('USERNESTLEGIRON'), os.getenv('PASSWORDNESTLEGIRON'), '014', 'HBTGRANDISTRIBUIDOR',varData, monht)
@@ -220,6 +227,21 @@ class ExecutionHouse:
         ComprimirNestle(be.house_route,nestleGiron.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
+
+    def giron_nestleCandelaria():
+        be = GenerateFiles(gir_NESTLE_212587, 154, os.getenv('USERNESTLEGIRON'), os.getenv('PASSWORDNESTLEGIRON'), '010,019', 'HBTGRANDISTRIBUIDOR',varData, monht)
+        be.output_municipality()
+        be.output_customers()
+        be.output_business_type()
+        be.output_inventory()
+        be.output_products()
+        be.output_sales()
+        be.output_sellers()
+        be.output_totals()
+        be.output_neighborhood()
+        ComprimirNestle(be.house_route,nestleCaliEje.format(enter))
+        LimpiarRuta(RutaGlobal + be.house_route)
+        #send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
     
     def total_gelvez():
         tl = GenerateFiles(total_GELVEZ, 144, os.getenv('USERTOTALGELVEZ'), os.getenv('PASSWORDTOTALGELVEZ'), 'NullStore', 'HBTGRANDISTRIBUIDOR',varData, monht)

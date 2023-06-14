@@ -13,14 +13,17 @@ def main():
     ExecutionHouse.cucuta_kimberly_ICH()
     ExecutionHouse.cucuta_kimberly_pañaleras()
     ExecutionHouse.giron_edgwell()
-    #ExecutionHouse.cucuta_colgate()
+    ExecutionHouse.cucuta_colgate()
     ExecutionHouse.cali_pañ_kimberly()
     ExecutionHouse.Giron_kimberly_ICH()
     ExecutionHouse.giron_eveready()
     ExecutionHouse.giron_nestle()
+    ExecutionHouse.giron_nestleCandelaria()
+    ExecutionHouse.total_gelvez()
+    ExecutionHouse.cucuta_energizer()
+    ExecutionHouse.giron_eveready()
 
-    #ExecutionHouse.total_gelvez()
-    
+
 
 
    

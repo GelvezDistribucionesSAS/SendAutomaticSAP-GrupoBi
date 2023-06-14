@@ -20,6 +20,7 @@ import selectors, sys
 RutaGlobal = "/home/sistemas/share/GrupoBit/"
 #Rutas de consulta sql de SalidaData
 rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
@@ -55,6 +56,7 @@ gir_EDGWELL_211187 = 'GIR_EDGWELL_211187/'
 gir_EVEREADY_210761 = 'GIR_EVEREADY_210761/'
 gir_ICH_KIMBERLY_209968 = 'GIR_ICH_KIMBERLY_209968/'
 gir_NESTLE_211851 = 'GIR_NESTLE_211851/'
+gir_NESTLE_212587 = 'GIR_NESTLE_212587/'
 cu_COLGATE_210973 = 'CUC_COLGATE_210973/'
 total_GELVEZ = 'GELVEZ_212401/'
 
@@ -93,19 +95,23 @@ def timed_input(prompt="", timeout=5) -> int:
 
 def control():
     VarFormat = ''
+    years = ''
+    mes = ''
     if timed_input() == 0:
         VarFormat = VarDateSQL.format(month_start_control())
         enter = str(Date.strftime("%Y6%m%d"))
+        mes = str(Date.strftime("%Y"))
+        years = str(Date.strftime("%m"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
         print(enter)
-        return VarFormat, InvetoryValidor, enter
+        return VarFormat, InvetoryValidor, enter , mes, years
     else: 
         dateinit = input('Fecha incial: ')
-        datefin = input('Fecha Final')
+        datefin = input('Fecha Final: ')
         VarFormat = "'{}' AND '{}'".format(dateinit, datefin )
         enter = datefin[0:4]+'6'+datefin[4:8]
         InvetoryValidor = "CURRENT_DATE,-{0}".format(1)
-        return VarFormat, InvetoryValidor, enter
+        return VarFormat, InvetoryValidor, enter, mes, years
 
 #Estructura de nombres de casa para salidad de archivos comprimidos
 #################### Cucuta ##########################################
@@ -122,10 +128,11 @@ KimberlyPañCucuta = 'KIMBERLY_209321_{}.zip'
 ColgateCucuta = 'COLGATE_210973_{}.zip'
 ###################GranDistribuidor #########################################
 edgewellGiron = 'EDGEWELL_211187_{}.zip'
-energeizerGiron = 'EVEREADY_210761_{}.zip'
+energeizerGiron = 'ENERGIZER_210761_{}.zip'
 kimberlyIchGiron = 'KIMBERLY_209968_{}.zip'
 kimberlyPañGiron = 'KIMBERLY_210541_{}.zip'
 nestleGiron = 'NESTLE_211851_{}.zip'
+nestleCaliEje = 'NESTLE_212587_{}.zip'
 ##################TotalGelvez##############################################
 totalGelvez = 'GELVEZ_212401_{}.zip'
        

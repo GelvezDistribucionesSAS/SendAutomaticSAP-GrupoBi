@@ -10,7 +10,7 @@ ELSE 'RG'
     T1."SalUnitMsr" || '#' || 
 --T1."CodeBars" || '#' || 
 T1."ItemCode" || '#' || --Colgate
-T1."ItmsGrpCod"
+T1."ItmsGrpCod" || '#C'
     ) AS "Sku"
 FROM
     "HBTGELVEZ_CUCUTA".OINM T0

@@ -1,6 +1,6 @@
 #Modulos importados
 import os.path
-from ..modulos.VariablesGlobales import rutaBase
+from ..modulos.VariablesGlobales import rutaBase, rutaArauca
 
 """ Para el proceso de seleccion del documento se incluye una condicción para estraer 
 la información de la consulta 1:Cucuta 2:GranDistribuidor"""
@@ -33,6 +33,15 @@ class ReadSQL:
         self.__VENDEDORESTOTAL = 'VendedoresTotal.sql'
         self.__VENTASTOTAL = 'VentasTotal.sql'
         self.__TIPOSNEOGOCIOSTOTAL = 'TipoNegocioTotal.sql'
+        #Variables de Arauca
+        self.__SKUARAUCA = 'sku.sql'
+        self.__INVENTARIOARAUCA = 'Inventario.sql'
+        self.__CLIENTEARAUCA = 'cliente.sql'
+        self.__TIPONEGOCIOARACA = 'TipoNegocio.sql'
+        self.__TOTALCONTROLARAUCA = 'TotalControl.sql'
+        self.__VENDEDORESARAUCA = 'Vendedores.sql'
+        self.__VENTASARAUCA = 'Ventas.sql'
+        self.__TOTALESCUCUTA = 'totalcontrolC.sql'
 
     def read_customers(self):
         data = """"""
@@ -161,4 +170,45 @@ class ReadSQL:
             data = f.read()  
         return data
     
+    #Datos de salida Arauca
+    def read_sku_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__SKUARAUCA)) as f:
+            data = f.read()
+        return data
     
+    def read_inventory_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__INVENTARIOARAUCA)) as f:
+            data = f.read()
+        return data
+    def read_customers_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__CLIENTEARAUCA)) as f:
+            data = f.read()
+        return data
+    def read_TypeBussiones_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__TIPONEGOCIOARACA)) as f:
+            data = f.read()
+        return data
+    def read_control_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__TOTALCONTROLARAUCA)) as f:
+            data = f.read()
+        return data
+    def read_sellers_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__VENDEDORESARAUCA)) as f:
+            data = f.read()
+        return data
+    def read_sales_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaArauca, self.__VENTASARAUCA)) as f:
+            data = f.read()
+        return data
+    def read_totales_arauca(self):
+        data = ''''''
+        with open(os.path.join(rutaBase, self.__TOTALESCUCUTA)) as f:
+            data = f.read()
+        return data

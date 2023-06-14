@@ -1,11 +1,11 @@
 #Importar modulos
 import os
-
-from .Conexion import conexion
+from decimal import Decimal
+from .Conexion import conexion , conectMantis, conect_Mantis
 from .ConvertirData import PasarArreglo, GuardarTexto
 from ..consultas.SalidaData import ReadSQL
-#from ..consultas.Salidad.Diccionario import *
 from .VariablesGlobales import *
+import numpy as np
 
 
 #Estructuras de control 
@@ -85,26 +85,81 @@ class GenerateFiles(ReadSQL):
     
     #Salidas especiales
 
+#Salida de colgate
     def output_inventory_colgate(self):
-        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
+        text =self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
         data = conexion(text.replace('#','{'))
-        data = PasarArreglo(data)
-        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + INVENTARIO))
+        conect_Mantis()
+        #Generar Arauca
+        text = self.read_inventory_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis=None)
+        GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + INVENTARIO))
         print('Se Genero: ' + INVENTARIO)
+
+    def output_customers_colgate(self):
+        text =self.read_customers().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        #generar arauca
+        text = self.read_customers_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis=None)
+        GuardarTexto(result,os.path.join(RutaGlobal,self.house_route + CLIENTES))
+        print('Se genero: ' + CLIENTES)
     
     def output_product_colgate(self):
         text = self.read_product_colgate().format(self.number_house, self.store, self.DateEnter)
         data = conexion(text.replace('#','{'))
-        data = PasarArreglo(data)
-        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
+        #Enerar arauca
+        text = self.read_sku_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis= None)
+        GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + SKU))
         print('Se Genero: ' + SKU)
 
     def output_sales_colgate(self):
-        text = self.read_sales_colgate().format(self.number_house, self.DateEnter)
+        text = self.read_sales_colgate().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
         data = conexion(text.replace('#','{'))
-        data = PasarArreglo(data)
-        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
+        #Generar Arauca
+        text = self.read_sales_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()),np.array(data2)),axis=None)
+        GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + VENTAS))
         print('Se Genero: '+ VENTAS)
+    #Total control Colgate
+    def output_totales_colgate(self):
+        text = self.read_totales_arauca().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data.fetchall())
+        #Generar Arauca
+        text = self.read_control_arauca()
+        data2 = conectMantis(text)
+        data2 = PasarArreglo(data2)
+        result = float(data[0]) + float(data2[0])
+        print(result)
+        result = [str('TotalValorVenta{'+str(result))]
+        GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + TOTALES))
+        print('Se Genero: '+ TOTALES)
+    #Generar vendedores
+    def output_sellers_colgate(self):
+        text = self.read_sellers().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        #Generar  vendedores
+        text = self.read_sellers_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis= None)
+        GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + VENDEDORES))
+        print('Se Genero: ' + VENDEDORES)
+    #Generar tipo negocio
+    def output_business_type_colgate(self):
+        text = self.read_business_type().format(self.schemeDB)
+        data = conexion(text.replace('#','{'))
+        #generar tipo matis
+        text = self.read_TypeBussiones_arauca()
+        data2 = conectMantis(text)
+        result = np.concatenate((np.array(data.fetchall()), np.array(data2)), axis= None)
+        GuardarTexto(result,os.path.join(RutaGlobal, self.house_route + TIPOSNEGOCIOS))
+        print('Se Genero: ' + TIPOSNEGOCIOS)
     
     #Genered Totals
 
