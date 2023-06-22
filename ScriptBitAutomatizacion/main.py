@@ -22,6 +22,9 @@ def main():
     ExecutionHouse.total_gelvez()
     ExecutionHouse.cucuta_energizer()
     ExecutionHouse.giron_eveready()
+    ExecutionHouse.cucuta_HDV() 
+    ExecutionHouse.cucuta_colgate()
+    ExecutionHouse.giron_nestleCandelaria()
 
 
 

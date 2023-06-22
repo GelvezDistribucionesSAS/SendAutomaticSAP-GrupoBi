@@ -3,7 +3,8 @@ SELECT
     IFNULL(T1."SuppCatNum",'') || '#' ||
     --IFNULL(T0."ItemCode",'')|| '#' ||
     IFNULL(CAST(SUM(T0."InQty") - SUM(T0."OutQty")+
-    IFNULL((SELECT
+    IFNULL((
+SELECT
     SUM(TA."InQty") - SUM(TA."OutQty") 
 FROM
     {2}.OINM TA
