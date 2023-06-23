@@ -9,22 +9,21 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-#RutaGlobal = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/Salidad/'
-#Rutas de consulta sql de SalidaData
-#rutaBase = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/'
-#RutaBaseGran = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor/'
+RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
+rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-RutaGlobal = "/home/sistemas/share/GrupoBit/"
+#RutaGlobal = "/home/sistemas/share/GrupoBit/"
 #Rutas de consulta sql de SalidaData
-rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+#rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+#rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
-fecha = date.today()
+fecha = date.today() 
 dia = fecha.strftime("%d")
  
 #Nombre de archivos globales
