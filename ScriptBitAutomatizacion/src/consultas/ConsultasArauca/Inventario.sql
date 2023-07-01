@@ -1,5 +1,5 @@
 SELECT 
-CONCAT(max(TA.EndDate),'{', TA.item,'{',sum(TA.quanty),'{',TA.salpack,'{A') 
+CONCAT(max(TA.EndDate),'#', TA.item,'#',sum(TA.quanty),'#',TA.salpack,'#A') 
 from(
 select
 
@@ -13,7 +13,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '20230531'
+	f.FacFec BETWEEN '20200101' and '{0}'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and artsec = a.artsec

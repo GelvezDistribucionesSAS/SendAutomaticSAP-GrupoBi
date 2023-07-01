@@ -9,17 +9,17 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
-rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+#RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
+#rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+#rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-#RutaGlobal = "/home/sistemas/share/GrupoBit/"
+RutaGlobal = "/home/sistemas/share/GrupoBit/"
 #Rutas de consulta sql de SalidaData
-#rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-#rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
@@ -97,13 +97,16 @@ def control():
     years = ''
     mes = ''
     if timed_input() == 0:
+        oneDay = timedelta(days=1)
         VarFormat = VarDateSQL.format(month_start_control())
         enter = str(Date.strftime("%Y6%m%d"))
         mes = str(Date.strftime("%Y"))
         years = str(Date.strftime("%m"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
+        datefin = datetime.now()- oneDay
         print(enter)
-        return VarFormat, InvetoryValidor, enter , mes, years, datefin
+        print(datefin)
+        return VarFormat, InvetoryValidor, enter , mes, years, datefin.strftime("%Y%m%d")
     else: 
         dateinit = input('Fecha incial: ')
         datefin = input('Fecha Final: ')

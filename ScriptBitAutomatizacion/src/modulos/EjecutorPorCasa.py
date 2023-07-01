@@ -94,6 +94,7 @@ class GenerateFiles(ReadSQL):
         conect_Mantis()
         #Generar Arauca
         text = self.read_inventory_arauca()
+        text = text.format(self.datefin)
         data2 = conectMantis(text)
         result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis=None)
         GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + INVENTARIO))

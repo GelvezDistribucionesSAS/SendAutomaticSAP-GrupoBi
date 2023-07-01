@@ -5,7 +5,7 @@ from src.modulos.ConvertirData import timed_input
 def main():
     
     timed_input()
-    """ExecutionHouse.bellezacucuta()
+    ExecutionHouse.bellezacucuta()
     ExecutionHouse.nestlecucuta()
     ExecutionHouse.cucuta_edgewell()
     ExecutionHouse.cucuta_energizer()
@@ -23,7 +23,7 @@ def main():
     ExecutionHouse.cucuta_energizer()
     ExecutionHouse.giron_eveready()
     ExecutionHouse.cucuta_HDV() 
-    ExecutionHouse.cucuta_colgate()"""
+    ExecutionHouse.cucuta_colgate()
     ExecutionHouse.cucuta_colgate()
     #ExecutionHouse.giron_nestleCandelaria()
 
