@@ -25,6 +25,7 @@ ScriptBitAutomatizacion/src/consultas/salida/VentasTotal/
 ScriptBitAutomatizacion/src/consultas/salidad/GELVEZ_212401/
 ScriptBitAutomatizacion/src/consultas/salida/CUCU_COLGATE_210973/
 ScriptBitAutomatizacion/src/modulos/.env
+/salida
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

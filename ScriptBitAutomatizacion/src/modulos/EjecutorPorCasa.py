@@ -2,15 +2,15 @@
 import os
 from decimal import Decimal
 from .Conexion import conexion , conectMantis, conect_Mantis
-from .ConvertirData import PasarArreglo, GuardarTexto
+from .ConvertirData import PasarArreglo, GuardarTexto, dateNowHana
 from ..consultas.SalidaData import ReadSQL
 from .VariablesGlobales import *
 import numpy as np
 
-
 #Estructuras de control 
 class GenerateFiles(ReadSQL):
-    def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB, DateEnter, monthd):
+    """Clase encarga de la generación de los proceso de ejecución  por casa comercial."""
+    def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB, DateEnter, monthd, datefin=None):
         self.house_route = house_route
         self.number_house = number_house
         self.userFTP = userFTP
@@ -18,8 +18,9 @@ class GenerateFiles(ReadSQL):
         self.store = store
         self.DateEnter = DateEnter
         self.monthd = monthd
-        
+        self.datefin = datefin
         ReadSQL.__init__(self,schemeDB)
+
     #Salida de municipios
     def output_municipality(self):
         datos = conexion((self.read_municipalities().format(self.schemeDB)).replace('#','{'))
@@ -35,8 +36,9 @@ class GenerateFiles(ReadSQL):
         print('Se genero: ' + CLIENTES)
     
     def output_inventory(self):
-        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
+        text =self.read_inventory().format(self.number_house, self.store, self.schemeDB,self.datefin)
         data = conexion(text.replace('#','{'))
+        print(data)
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
         print('Se Genero: ' + INVENTARIO)
@@ -87,11 +89,12 @@ class GenerateFiles(ReadSQL):
 
 #Salida de colgate
     def output_inventory_colgate(self):
-        text =self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.monthd)
+        text =self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.datefin)
         data = conexion(text.replace('#','{'))
         conect_Mantis()
         #Generar Arauca
         text = self.read_inventory_arauca()
+        text = text.format(self.datefin)
         data2 = conectMantis(text)
         result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis=None)
         GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + INVENTARIO))

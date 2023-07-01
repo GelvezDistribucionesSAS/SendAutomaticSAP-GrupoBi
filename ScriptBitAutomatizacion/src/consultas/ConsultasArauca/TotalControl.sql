@@ -21,7 +21,7 @@ left join Cotizaciones1 ct on
 	ct.CotSec = k.FacSecRem
 where
 	year(facfec)= 2023
-	and month(facfec)= 6
+	and month(facfec)= 7
 	and factiptra in('FDV', 'NCR')
 	AND FACEST = 'A'
 	and InvGruCod IN('3')

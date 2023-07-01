@@ -9,10 +9,9 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-#RutaGlobal = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/Salidad/'
-#Rutas de consulta sql de SalidaData
-#rutaBase = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/'
-#RutaBaseGran = 'E:/USER/Downloads/VPN_GELVEZ(1)/venv/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor/'
+#RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
+#rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+#rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 
 #########################################################################################
 ###########Ruta de productiva ###################
@@ -24,7 +23,7 @@ rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/c
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
-fecha = date.today()
+fecha = date.today() 
 dia = fecha.strftime("%d")
  
 #Nombre de archivos globales
@@ -98,21 +97,23 @@ def control():
     years = ''
     mes = ''
     if timed_input() == 0:
+        oneDay = timedelta(days=1)
         VarFormat = VarDateSQL.format(month_start_control())
         enter = str(Date.strftime("%Y6%m%d"))
         mes = str(Date.strftime("%Y"))
         years = str(Date.strftime("%m"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
+        datefin = datetime.now()- oneDay
         print(enter)
-        return VarFormat, InvetoryValidor, enter , mes, years
+        print(datefin)
+        return VarFormat, InvetoryValidor, enter , mes, years, datefin.strftime("%Y%m%d")
     else: 
         dateinit = input('Fecha incial: ')
         datefin = input('Fecha Final: ')
         VarFormat = "'{}' AND '{}'".format(dateinit, datefin )
         enter = datefin[0:4]+'6'+datefin[4:8]
         InvetoryValidor = "CURRENT_DATE,-{0}".format(1)
-        return VarFormat, InvetoryValidor, enter, mes, years
-
+        return VarFormat, InvetoryValidor, enter, mes, years, datefin
 #Estructura de nombres de casa para salidad de archivos comprimidos
 #################### Cucuta ##########################################
 
