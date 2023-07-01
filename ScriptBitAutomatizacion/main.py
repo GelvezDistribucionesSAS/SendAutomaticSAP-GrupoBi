@@ -23,9 +23,9 @@ def main():
     ExecutionHouse.cucuta_energizer()
     ExecutionHouse.giron_eveready()
     ExecutionHouse.cucuta_HDV() 
+    ExecutionHouse.cucuta_colgate()"""
     ExecutionHouse.cucuta_colgate()
-    ExecutionHouse.giron_nestleCandelaria()"""
-    ExecutionHouse.cucuta_colgate()
+    #ExecutionHouse.giron_nestleCandelaria()
 
 
 

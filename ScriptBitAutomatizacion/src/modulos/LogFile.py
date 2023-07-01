@@ -36,7 +36,7 @@ def count_elapsed_time(f):
         return ret
     
     return wrapper
-varData , monht, enter, mes, years= control()
+varData , monht, enter, mes, years, datefin= control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
@@ -144,7 +144,7 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,KimberlyPañCucuta.format(enter))
 
     def cucuta_colgate():
-        be = GenerateFiles(cu_COLGATE_210973, 150, os.getenv('USERCOLGATECUCUTA'), os.getenv('PASSWORDCOLGATECUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht)
+        be = GenerateFiles(cu_COLGATE_210973, 150, os.getenv('USERCOLGATECUCUTA'), os.getenv('PASSWORDCOLGATECUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
         #print(mes, año)
         be.output_municipality()
         be.output_customers_colgate()
@@ -229,7 +229,7 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
 
     def giron_nestleCandelaria():
-        be = GenerateFiles(gir_NESTLE_212587, 154, os.getenv('USERNESTLEGIRON'), os.getenv('PASSWORDNESTLEGIRON'), '010,019', 'HBTGRANDISTRIBUIDOR',varData, monht)
+        be = GenerateFiles(gir_NESTLE_212587, 154, os.getenv('USERNESTLEGIRON'), os.getenv('PASSWORDNESTLEGIRON'), '010,019', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()

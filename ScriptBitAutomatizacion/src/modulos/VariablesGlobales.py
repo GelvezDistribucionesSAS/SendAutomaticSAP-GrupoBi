@@ -103,15 +103,14 @@ def control():
         years = str(Date.strftime("%m"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
         print(enter)
-        return VarFormat, InvetoryValidor, enter , mes, years
+        return VarFormat, InvetoryValidor, enter , mes, years, datefin
     else: 
         dateinit = input('Fecha incial: ')
         datefin = input('Fecha Final: ')
         VarFormat = "'{}' AND '{}'".format(dateinit, datefin )
         enter = datefin[0:4]+'6'+datefin[4:8]
         InvetoryValidor = "CURRENT_DATE,-{0}".format(1)
-        return VarFormat, InvetoryValidor, enter, mes, years
-
+        return VarFormat, InvetoryValidor, enter, mes, years, datefin
 #Estructura de nombres de casa para salidad de archivos comprimidos
 #################### Cucuta ##########################################
 

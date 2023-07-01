@@ -1,6 +1,6 @@
 from .VariablesGlobales import *
 from .EnvioEmail import correo as cr
-import datetime
+from datetime import datetime, timedelta 
 
 
 
@@ -50,5 +50,9 @@ def GuardarTexto(Ingrese ,Ruta):
     f.close()
 
 
+def dateNowHana():
+    date = datetime.now()
+    date = date - timedelta(days=1)
+    return date.strftime("%Y%m%d")
 
 
