@@ -101,7 +101,7 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,EnergeizerCucuta.format(enter))
 
     def cucuta_HDV():
-        be = GenerateFiles(cu_HDV_208514, 151, os.getenv('USERHDVCUCUTA'), os.getenv('PASSWORDHDVCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        be = GenerateFiles(cu_HDV_208514, 146, os.getenv('USERHDVCUCUTA'), os.getenv('PASSWORDHDVCUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
