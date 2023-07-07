@@ -95,7 +95,7 @@ class GenerateFiles(ReadSQL):
         #Generar Arauca
         text = self.read_inventory_arauca()
         text = text.format(self.datefin)
-        data2 = conectMantis(text)
+        data2 = conectMantis(text.replace('#','{'))
         result = np.concatenate((np.array(data.fetchall()),np.array(data2)), axis=None)
         GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + INVENTARIO))
         print('Se Genero: ' + INVENTARIO)
