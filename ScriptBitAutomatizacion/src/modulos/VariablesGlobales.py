@@ -9,9 +9,9 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-#RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
-#rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-#rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+##RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
+##rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+##rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 
 #########################################################################################
 ###########Ruta de productiva ###################
