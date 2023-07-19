@@ -229,7 +229,7 @@ class ExecutionHouse:
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
 
     def giron_nestleCandelaria():
-        be = GenerateFiles(gir_NESTLE_212587, 154, os.getenv('USERNESTLEGIRON'), os.getenv('PASSWORDNESTLEGIRON'), '010,019', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
+        be = GenerateFiles(gir_NESTLE_212587, 154, os.getenv('USERCANDELARIA'), os.getenv('PASSWORDCANDELARIA'), '010,019', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -241,7 +241,7 @@ class ExecutionHouse:
         be.output_neighborhood()
         ComprimirNestle(be.house_route,nestleCaliEje.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
-        #send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleGiron.format(enter))
+        send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleCaliEje.format(enter))
     
     def total_gelvez():
         tl = GenerateFiles(total_GELVEZ, 144, os.getenv('USERTOTALGELVEZ'), os.getenv('PASSWORDTOTALGELVEZ'), 'NullStore', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
