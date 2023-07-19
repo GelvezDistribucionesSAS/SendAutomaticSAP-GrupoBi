@@ -5,13 +5,13 @@ from src.modulos.ConvertirData import timed_input
 def main():
     
     timed_input()
-    ExecutionHouse.bellezacucuta()
+    """ExecutionHouse.bellezacucuta()
     ExecutionHouse.nestlecucuta()
     ExecutionHouse.cucuta_edgewell()
     ExecutionHouse.cucuta_energizer()
     ExecutionHouse.cucuta_HDV()
     ExecutionHouse.cucuta_kimberly_ICH()
-    ExecutionHouse.cucuta_kimberly_pañaleras()
+    ExecutionHouse.cucuta_kimberly_pañaleras()"""
     ExecutionHouse.giron_edgwell()
     ExecutionHouse.cucuta_colgate()
     ExecutionHouse.cali_pañ_kimberly()

@@ -1,5 +1,5 @@
 SELECT
-	('TotalValorVenta' || '#' || cast((SUM(D1."Valor")) as int)) AS "Totales_control"
+	('TotalValorVenta' || '#' || IFNULL(cast((SUM(D1."Valor")) as int),0) )AS "Totales_control"
 FROM (
 	SELECT
 		T1."CardCode" AS "CodigoCliente",

@@ -8,7 +8,7 @@ WHEN 'CBO' THEN 'OF'
 ELSE 'RG'
  END || '#' ||
     T1."SalUnitMsr" || '#' || 
-T1."CodeBars" || '#' || 
+IFNULL(T1."CodeBars",'0') || '#' || 
 --T1."ItemCode" || '#' || --Colgate
 T1."ItmsGrpCod"
     ) AS "Sku"
