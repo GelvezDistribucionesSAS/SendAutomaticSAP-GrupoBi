@@ -7,7 +7,7 @@ from ..consultas.SalidaData import ReadSQL
 from .VariablesGlobales import *
 import numpy as np
 
-#Estructuras de control 
+ 
 class GenerateFiles(ReadSQL):
     """Clase encarga de la generación de los proceso de ejecución  por casa comercial."""
     def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB, DateEnter, monthd, datefin=None):

@@ -40,6 +40,8 @@ varData , monht, enter, mes, years, datefin= control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
+    """Se encarga de  dar la ejecucción  de cada una de la csas comerciales de manera manual se realiza
+    la creacción de cada objeto."""
     @count_elapsed_time
     def bellezacucuta():
         be = GenerateFiles(Belleza, 157, os.getenv('USERBELLEZACUCUTA'), os.getenv('PASSWORDBELLEZA'), '006', 'HBTGELVEZ_CUCUTA', varData, monht, datefin)

@@ -4,13 +4,14 @@ from datetime import date , timedelta
 from .VariablesGlobales import data, dataNestle, RutaGlobal, dataTotal
 import glob
 
-"""
-Modulo comprección:
-Se encarga de comprimir cada uno de los archivos según la estructura que se solicita,
-Contiene además la funcción  de limpieza que se encarga de elimar los arhivos una vez que este comprimidos.
-"""
-# Desarrollo de 
+
+
 def Comprimir01(HomeFolfer,NameHome):
+    """
+    Modulo comprección:
+    Se encarga de comprimir cada uno de los archivos según la estructura que se solicita,
+    Contiene además la funcción  de limpieza que se encarga de elimar los arhivos una vez que este comprimidos.
+    """
     try: 
         import zlib
         compression = zipfile.ZIP_DEFLATED
@@ -26,8 +27,11 @@ def Comprimir01(HomeFolfer,NameHome):
 
     DataCompress.close()
 
-#Comprimir los archivos de Neslte.
+
 def ComprimirNestle(HomeFolfer,NameHome):
+    """ 
+    Funcion encargada de realizar la compreción de la casa de nestle por que maneja mas archivos.
+    """
     try: 
         import zlib
         compression = zipfile.ZIP_DEFLATED
@@ -42,8 +46,9 @@ def ComprimirNestle(HomeFolfer,NameHome):
         DataCompress.close()
 
     DataCompress.close()
-#Función encargada de limpiar las diferentes salidas de solo texto.
+
 def LimpiarRuta(HomeFolder):
+    """Función encargada de limpiar las diferentes salidas de solo texto."""
     py_files=glob.glob(HomeFolder+'*.txt')
 
     for pyfile in py_files:
@@ -54,8 +59,9 @@ def LimpiarRuta(HomeFolder):
             print(f"Error:{e.strerror}")
     print("Eliminado")
 
-#Comprimir los archivos de Gelvez  Total. 
+
 def compress_total(HomeFolder,NameHome):
+    """Comprimir los archivos de Gelvez  Total. """
     try: 
         import zlib
         compression = zipfile.ZIP_DEFLATED
