@@ -8,7 +8,7 @@ CONCAT(
 	ltrim(rtrim(str((k.KarUni  + (karcaj * karartemb))* case when factiptra = 'NCR' THEN -1 else 1 end)))+ '{',
 	ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END)))
  + '{' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN 1 ELSE 0 END)))+ '{' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN (karpre *(karuni +(karcaj * karartemb)))*-1 ELSE karpre END)))
- + '{A')
+ )
 from
 	KARDEX K
 left join articulos a on
