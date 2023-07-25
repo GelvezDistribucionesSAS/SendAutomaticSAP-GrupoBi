@@ -38,6 +38,7 @@ salida/
 *.so
 *.env
 .env
+*json
 # Distribution / packaging
 .Python
 build/

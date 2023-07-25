@@ -1,6 +1,7 @@
 from .VariablesGlobales import *
-from .EnvioEmail import correo as cr
+from ..components.sendMail import sendMailEcxel as cr
 from datetime import datetime, timedelta 
+from ..components.dataExtract import extracJSON, getFilePath
 
 
 
@@ -20,24 +21,38 @@ def ConverData(IntroData):
     
 
 def PasarArreglo(Data):
+    """
+    Se encarga de convertir una tupla en un arreglo.
+    """
     DatosConvert = []
     for i in Data:
         for j in i:
             DatosConvert.append(str(j))
     return DatosConvert
 
-#Se encarga de generar el archivo con el error de lineas en blanco
+
 def LogError(Data):
+    """
+    Se encarga de generar el arhivo de log con el error reportado de lineas en blanco 
+    """
     with open (RutaGlobal+'LogError.txt' , 'a', encoding='utf-8') as t:
         t.write('\n')
         t.write(Data)
-    cr()
+    dataJSON = extracJSON(getFilePath('config','mail.json'))
+    cr(sender= dataJSON['sender'],
+       addressee= dataJSON['addressee'],
+       affair='Error de envio Correo',
+       menssage='menssaje.html',
+       nameArchive= 'LogError.txt',
+       password= dataJSON['password']
+       )
         
 
-"""
-Funcción encargada de guardar el texto generado depues el procesamiento de los datos. 
-"""
+
 def GuardarTexto(Ingrese ,Ruta):
+    """
+        Funcción encargada de guardar el texto generado depues el procesamiento de los datos. 
+    """
     with open(Ruta, "w",encoding='utf-8') as f:
         for j in Ingrese:
             if j == "None":
@@ -46,11 +61,11 @@ def GuardarTexto(Ingrese ,Ruta):
                 break
             else: 
                 f.write(str(j)+"\n")
-            #print("Ingreso")
     f.close()
 
 
 def dateNowHana():
+    """Generar hora actual para formato de hana que se puede ejecutar en SQL"""
     date = datetime.now()
     date = date - timedelta(days=1)
     return date.strftime("%Y%m%d")
