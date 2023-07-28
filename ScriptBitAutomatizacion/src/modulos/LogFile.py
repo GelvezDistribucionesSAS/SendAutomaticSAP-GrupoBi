@@ -261,4 +261,18 @@ class ExecutionHouse:
         LimpiarRuta(RutaGlobal + tl.house_route)
         send_FTP(tl.userFTP,tl.password,RutaGlobal,tl.house_route,totalGelvez.format(enter))
 
+    def brisan_Arauca():
+        a = GenerateFiles(Ara_BRINSA,1,os.getenv('USERBRINSA'), os.getenv('PASSWORDBRINSA'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        a.customerArauca()
+        a.iventoryArauca()
+        a.skuArauca()
+        a.typeBussionesArauca()
+        a.controlTotalArauca()
+        a.salesArauca()
+        a.sellersArauca()
+        a.output_municipality()
+        Comprimir01(a.house_route,brinsaArauca.format(enter))
+        LimpiarRuta(RutaGlobal+a.house_route)
+        send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
+
 

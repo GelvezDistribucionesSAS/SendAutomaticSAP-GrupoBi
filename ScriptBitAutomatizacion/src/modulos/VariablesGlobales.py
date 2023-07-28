@@ -58,6 +58,7 @@ gir_NESTLE_211851 = 'GIR_NESTLE_211851/'
 gir_NESTLE_212587 = 'GIR_NESTLE_212587/'
 cu_COLGATE_210973 = 'CUC_COLGATE_210973/'
 total_GELVEZ = 'GELVEZ_212401/'
+Ara_BRINSA= 'BRINSA_213173/'
 
 
 #
@@ -65,7 +66,7 @@ total_GELVEZ = 'GELVEZ_212401/'
 #Entrada de movimiento de fecha 
 VarDateSQL= " ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{})),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )"
 Date  = date.today() - timedelta(days= 1)
-
+mesDate = Date.month
 #Define el inicio del mes
 def month_start_control():
     x = datetime.now()
@@ -136,4 +137,7 @@ nestleGiron = 'NESTLE_211851_{}.zip'
 nestleCaliEje = 'NESTLE_212587_{}.zip'
 ##################TotalGelvez##############################################
 totalGelvez = 'GELVEZ_212401_{}.zip'
+
+#######################ARAUCA############################################
+brinsaArauca = 'BRINSA_213173_{}.zip'
        

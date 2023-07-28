@@ -1,13 +1,13 @@
 select
 CONCAT(
-	n.NitIde + '{' +
-	n2.NitIde + '{'+
-	REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtCod AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '')+ '{' +
-	RTRIM(CAST(replace(CONVERT(varchar, facfec, 103) , '/', '')AS VARCHAR(249))) + '{'+
-	facnro + '{' +
-	ltrim(rtrim(str((k.KarUni  + (karcaj * karartemb))* case when factiptra = 'NCR' THEN -1 else 1 end)))+ '{',
+	n.NitIde + '#' +
+	n2.NitIde + '#'+
+	REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtCod AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '')+ '#' +
+	RTRIM(CAST(replace(CONVERT(varchar, facfec, 103) , '/', '')AS VARCHAR(249))) + '#'+
+	facnro + '#' +
+	ltrim(rtrim(str((k.KarUni  + (karcaj * karartemb))* case when factiptra = 'NCR' THEN -1 else 1 end)))+ '#',
 	ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END)))
- + '{' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN 1 ELSE 0 END)))+ '{' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN (karpre *(karuni +(karcaj * karartemb)))*-1 ELSE karpre END)))
+ + '#' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN 1 ELSE 0 END)))+ '#' + ltrim(rtrim(str(case when factiptra = 'NCR' THEN (karpre *(karuni +(karcaj * karartemb)))*-1 ELSE karpre END)))
  )
 from
 	KARDEX K
@@ -29,9 +29,9 @@ left join Cotizaciones1 ct on
 	ct.CotSec = k.FacSecRem
 where
 	year(facfec)= 2023
-	and month(facfec)= 7
+	and month(facfec)= {1}
 	and factiptra in('FDV', 'NCR')
 	AND FACEST = 'A'
-	and InvGruCod IN('1')
+	and InvGruCod IN('{0}')
 	and facnitsec <> 19519
 

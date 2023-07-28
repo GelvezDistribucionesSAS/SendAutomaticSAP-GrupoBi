@@ -2,12 +2,13 @@
 import os
 from decimal import Decimal
 from .Conexion import conexion , conectMantis, conect_Mantis
-from .ConvertirData import PasarArreglo, GuardarTexto, dateNowHana
+from .ConvertirData import PasarArreglo, GuardarTexto 
 from ..consultas.SalidaData import ReadSQL
 from .VariablesGlobales import *
 import numpy as np
+from ..components.converTextData import ConverText 
 
- 
+
 class GenerateFiles(ReadSQL):
     """Clase encarga de la generación de los proceso de ejecución  por casa comercial."""
     def __init__(self, house_route, number_house, userFTP, password ,store, schemeDB, DateEnter, monthd, datefin=None):
@@ -181,7 +182,7 @@ class GenerateFiles(ReadSQL):
         print('Se genero: ' + CLIENTES)
     
     def output_inventory_total(self):
-        text =self.read_inventory_gelvez().format(self.DateEnter, self.monthd)
+        text =self.read_inventory_gelvez().format(self.datefin)
         data = conexion(text.replace('#','{'))
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
@@ -229,5 +230,61 @@ class GenerateFiles(ReadSQL):
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SELLIN))
         print('Se Genero: ' + SELLIN)
     
+    #Salida de CASAS de ARAUCA
+    def customerArauca(self):
+        text = ConverText.converTextFormatSQLArauca('clienteGeneral.sql')
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal,self.house_route+ CLIENTES))
+        print('Se Genero: ' + CLIENTES)
     
+    def iventoryArauca(self):
+        text = ConverText.converTextFormatSQLArauca('inventarioGeneral.sql',self.number_house, '20230630')#lleva Data
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
+        print("Se Genero: " + INVENTARIO)
+
+    def skuArauca(self):
+        text = ConverText.converTextFormatSQLArauca('skuGeneral.sql',self.number_house)
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + SKU))
+        print("Se Genero: " + SKU)
+
+    def typeBussionesArauca(self):
+        text = ConverText.converTextFormatSQLArauca('TipoNegocioGeneral.sql')
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + TIPOSNEGOCIOS))
+        print("Se Genero: " + TIPOSNEGOCIOS)
+
+    def controlTotalArauca(self):
+        text = ConverText.converTextFormatSQLArauca('totalControlGeneral.sql',self.number_house,6)
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        data[0] = 'TotalValorVenta{'+str(data[0])
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + TOTALES))
+        print("Se Genero: " + TOTALES)
+
+    def sellersArauca(self):
+        text = ConverText.converTextFormatSQLArauca('vendedoresGeneral.sql',self.number_house,6)
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + VENDEDORES))
+        print("Se Genero: " + VENDEDORES)
+
+    def salesArauca(self):
+        text = ConverText.converTextFormatSQLArauca('ventasGeneral.sql',self.number_house,6)
+        data = conectMantis(text)
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + VENTAS))
+        print("Se Genero: " + VENTAS)
+    
+    
+    
+
+
+
+
 

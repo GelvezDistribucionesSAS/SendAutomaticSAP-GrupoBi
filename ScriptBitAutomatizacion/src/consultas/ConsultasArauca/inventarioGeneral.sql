@@ -12,7 +12,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '20230724'
+	f.FacFec BETWEEN '20200101' and '{1}'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and artsec = a.artsec
@@ -36,6 +36,6 @@ LEFT JOIN InventarioFamilia FF ON
 LEFT JOIN InventarioSubgrupo SS ON
 	SS.InvSubGruCod = FF.InvSubGruCod
 where
-	InvGruCod IN('1') ) as TA
+	InvGruCod IN('{0}') ) as TA
 
 GROUP by TA.item, TA.EndDAte, TA.salpack , TA.CodeItem
