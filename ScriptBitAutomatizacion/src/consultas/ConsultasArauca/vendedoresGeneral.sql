@@ -1,5 +1,5 @@
 SELECT
-	T2.NitIde + '{' + v.VenNom + '{ {' + T2.NitIde
+	T2.NitIde + '#' + v.VenNom + '# #' + T2.NitIde
 FROM
 	MantisWebEv3.dbo.Vendedores v
 left join MantisWebEv3.dbo.Nit T2 on
@@ -21,6 +21,6 @@ WHERE
 	WHERE
 		t4.FacTipTra in ('FDV','NCR')
 		AND t4.FacEst = 'A'
-		AND year(facfec)= 2023 AND month(facfec) = 7
+		AND year(facfec)= 2023 AND month(facfec) = {1}
 				AND t4.FacVenCod = V.VenCod
-				AND t3.InvGruCod IN ('1'))<> 0
+				AND t3.InvGruCod IN ('{0}'))<> 0

@@ -75,7 +75,7 @@ SELECT
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
 	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
-	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
+	IFNULL(round(-(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
 	0 || '#' ||
 	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
 IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD')|| '#' ||
@@ -214,7 +214,7 @@ SELECT
 	TO_VARCHAR(T1."DocDate", 'DDMMYYYY')|| '#' ||
 	T1."DocNum" || '#' ||
 	IFNULL(cast(T2."Quantity" as int),'0') || '#' ||
-	IFNULL(round((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
+	IFNULL(round(-(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)),0),'0')|| '#' ||
 	0 || '#' ||
 	IFNULL(cast(T2."StockValue" as int), '0') || '#' ||
 IFNULL(IFNULL(T7."InvntryUom",T7."SalUnitMsr"),'UNIDAD') || '#' ||

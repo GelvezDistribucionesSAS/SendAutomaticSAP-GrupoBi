@@ -6,7 +6,7 @@ def main():
     
     timed_input()
     ExecutionHouse.bellezacucuta()
-    """ExecutionHouse.nestlecucuta()
+    ExecutionHouse.nestlecucuta()
     ExecutionHouse.cucuta_edgewell()
     ExecutionHouse.cucuta_energizer()
     ExecutionHouse.cucuta_HDV()
@@ -19,13 +19,8 @@ def main():
     ExecutionHouse.giron_eveready()
     ExecutionHouse.giron_nestle()
     ExecutionHouse.giron_nestleCandelaria()
+    ExecutionHouse.brisan_Arauca()
     ExecutionHouse.total_gelvez()
-    ExecutionHouse.cucuta_energizer()
-    ExecutionHouse.giron_eveready()
-    ExecutionHouse.cucuta_HDV() 
-    ExecutionHouse.cucuta_colgate()
-    ExecutionHouse.giron_nestleCandelaria()"""
-   
 if __name__ == '__main__':
     main()
 
