@@ -39,7 +39,6 @@ class GenerateFiles(ReadSQL):
     def output_inventory(self):
         text =self.read_inventory().format(self.number_house, self.store, self.schemeDB,self.datefin)
         data = conexion(text.replace('#','{'))
-        print(data)
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
         print('Se Genero: ' + INVENTARIO)
@@ -263,6 +262,7 @@ class GenerateFiles(ReadSQL):
         text = ConverText.converTextFormatSQLArauca('totalControlGeneral.sql',self.number_house,8)
         data = conectMantis(text)
         data = PasarArreglo(data)
+        print(data[0])
         data[0] = 'TotalValorVenta{'+str(data[0])
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + TOTALES))
         print("Se Genero: " + TOTALES)
