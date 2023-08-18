@@ -1,5 +1,8 @@
 SELECT DISTINCT * FROM(SELECT
-	(T1."ItemCode" || '#' ||
+	(CASE
+              WHEN T1."U_U_CheckBit" = 'Y' THEN T1."U_U_Acronimo"
+              ELSE T1."ItemCode"
+              END || '#' ||
 	T1."ItemName" || '#' ||
 	CASE T1."SalUnitMsr"
 		WHEN 'CBO' THEN 'OF'
@@ -40,7 +43,7 @@ WHERE
 	T0."CreateDate" BETWEEN {0}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{0})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 	AND T0."Warehouse" = '006'
 GROUP BY
-	T1."ItemName",T1."ItemCode",T1."SalUnitMsr",T1."CodeBars",T1."ItmsGrpCod",T2."ItmsGrpNam",T4."Code",T4."Name",T5."Code",T5."Name",T0."Warehouse"
+	T1."ItemName",T1."ItemCode",T1."SalUnitMsr",T1."CodeBars",T1."ItmsGrpCod",T2."ItmsGrpNam",T4."Code",T4."Name",T5."Code",T5."Name",T0."Warehouse", T1."U_U_CheckBit",T1."U_U_Acronimo"
 UNION ALL
 SELECT
    (CASE
@@ -142,7 +145,10 @@ AND T3."U_U_CheckBit" = 'Y')AS "TA"
 UNION ALL 
 
 SELECT DISTINCT * FROM(SELECT
-	(T1."ItemCode" || '#' ||
+	(CASE
+              WHEN T1."U_U_CheckBit" = 'Y' THEN T1."U_U_Acronimo"
+              ELSE T1."ItemCode"
+              END || '#' ||
 	T1."ItemName" || '#' ||
 	CASE T1."SalUnitMsr"
 		WHEN 'CBO' THEN 'OF'
@@ -181,7 +187,7 @@ WHERE
 	T0."CreateDate" BETWEEN {0}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{0})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 	AND T0."Warehouse" IN (010,014,019)
 GROUP BY
-	T1."ItemName",T1."ItemCode",T1."SalUnitMsr",T1."CodeBars",T1."ItmsGrpCod",T2."ItmsGrpNam",T4."Code",T4."Name",T5."Code",T5."Name",T0."Warehouse"
+	T1."ItemName",T1."ItemCode",T1."SalUnitMsr",T1."CodeBars",T1."ItmsGrpCod",T2."ItmsGrpNam",T4."Code",T4."Name",T5."Code",T5."Name",T0."Warehouse",T1."U_U_CheckBit",T1."U_U_Acronimo"
 UNION ALL
 SELECT
    (T3."U_U_Acronimo" || '#' ||
