@@ -16,10 +16,11 @@ import selectors, sys
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-RutaGlobal = "/home/sistemas/share/GrupoBit/"
+RutaGlobal = "/home/DATA/ArchivosBitFedora/GrupoBit"
 #Rutas de consulta sql de SalidaData
 rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+rutaCDT = "/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
