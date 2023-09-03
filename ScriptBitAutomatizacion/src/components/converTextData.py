@@ -7,3 +7,10 @@ class ConverText:
         querySQL = str(querySQL.read()).format(*vars)
         querySQL = querySQL.replace('#','{')
         return querySQL
+    
+    def converGeneralText(fileNameSQL,PathFolder,*vars):
+        querySQL = open(os.path.join(PathFolder, fileNameSQL))
+        querySQL = str(querySQL.read()).format(*vars)
+        querySQL = querySQL.replace('#','{')
+        return querySQL
+
