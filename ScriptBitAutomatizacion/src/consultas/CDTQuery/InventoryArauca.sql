@@ -1,5 +1,5 @@
 SELECT 
-CONCAT( 'CO','|','004018908470403001','|',TA.item,'|',TA.NameItem,'|',sum(TA.quanty),'|''|') 
+CONCAT( 'CO','|','{0}','|',TA.item,'|',TA.NameItem,'|',sum(TA.quanty),'|',TA.Valorisado,'|{1}|{2}') 
 from(
 select
 (replace(CONVERT(varchar, getdate(), 11), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(a.ArtCod  AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,
@@ -12,13 +12,29 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '20230831'
+	f.FacFec BETWEEN '20200101' and '{3}'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and k.artsec = a.artsec
 	group by
-		artsec),
+		k.artsec),
 	0) ) as quanty,
+	(
+	SELECT	 
+		sum(CASE WHEN karnat = '+' THEN (karuni +(KARCAJ * KARARTEMB)) WHEN karnat = '-' THEN (karuni +(KARCAJ * KARARTEMB))* -1 END)
+		* (SELECT max(pd.PrePreFijCosPro) from PreciosDetalle pd where pd.ArtSec = k.ArtSec)
+	FROM
+		kardex K
+	LEFT JOIN Factura f ON
+		f.FacSec = k.FacSec
+	WHERE
+	f.FacFec BETWEEN '20200101' and '{3}'AND
+	k.SubBodSucCCSec = 2
+		and f.facest = 'A'
+		and k.artsec = a.ArtSec
+	group by k.ArtSec 
+	)as Valorisado,
+	
 	(
 	SELECT
 		TOP 1 PREARTNOM
@@ -37,6 +53,6 @@ LEFT JOIN InventarioFamilia FF ON
 LEFT JOIN InventarioSubgrupo SS ON
 	SS.InvSubGruCod = FF.InvSubGruCod
 where
-	InvGruCod IN('4') ) as TA
-WHERE TA.item = '1221318'
-GROUP by TA.item, TA.salpack, TA.NameItem, TA.quanty
+	InvGruCod IN('{4}') ) as TA
+--WHERE TA.item = '1221318'
+GROUP by TA.item, TA.salpack, TA.NameItem, TA.quanty, TA.Valorisado
