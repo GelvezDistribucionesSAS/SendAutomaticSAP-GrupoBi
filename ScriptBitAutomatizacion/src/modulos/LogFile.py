@@ -285,7 +285,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         para arauca actualizar manualmente el years cuando se quiera consultar 
         datos de meses anteriores
         """  
-        b = CDTExtract(years,dateinit,dateformat,datefin)
+        b = CDTExtract(years,datefin,dateformat,dateinit)
         b.ExecutorSales()
 
 
