@@ -16,7 +16,7 @@ rutaCDT = "/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizaci
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-RutaGlobal = "/home/DATA/ArchivosBitFedora/GrupoBit/"
+##RutaGlobal = "/home/Info/GrupoBit/"
 #Rutas de consulta sql de SalidaData
 ##rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
 ##rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
