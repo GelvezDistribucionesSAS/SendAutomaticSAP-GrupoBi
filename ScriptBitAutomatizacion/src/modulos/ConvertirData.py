@@ -63,6 +63,19 @@ def GuardarTexto(Ingrese ,Ruta):
                 f.write(str(j)+"\n")
     f.close()
 
+def GuardarTextoCDT(Ingrese ,Ruta):
+    """
+        Funcción encargada de guardar el texto generado a partir de partir los dos array  que se van agregando de CDT. 
+    """
+    with open(Ruta, "w",encoding='utf-8') as f:
+        for j in Ingrese:
+            for i in j:
+                if j == "None":
+                    continue
+                else: 
+                    f.write(str(i)+"\n")
+    f.close()
+
 
 def dateNowHana():
     """Generar hora actual para formato de hana que se puede ejecutar en SQL"""
