@@ -105,16 +105,19 @@ def control():
         years = str(Date.strftime("%m"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
         datefin = datetime.now()- oneDay
+        dateinit = datefin.replace(day= 1)
+        dateformat = datefin.strftime("%d/%m/%Y")
         print(enter)
         print(datefin)
-        return VarFormat, InvetoryValidor, enter , mes, years, datefin.strftime("%Y%m%d")
+        return VarFormat, InvetoryValidor, enter , mes, years, datefin.strftime("%Y%m%d"), dateinit.strftime("%Y%m%d"), dateformat
     else: 
         dateinit = input('Fecha incial: ')
         datefin = input('Fecha Final: ')
+        dateformat = input("Ingresar fecha final dia/mes/año: ")
         VarFormat = "'{}' AND '{}'".format(dateinit, datefin )
         enter = datefin[0:4]+'6'+datefin[4:8]
         InvetoryValidor = "CURRENT_DATE,-{0}".format(1)
-        return VarFormat, InvetoryValidor, enter, mes, years, datefin
+        return VarFormat, InvetoryValidor, enter, mes, years, datefin, dateinit, dateformat
 #Estructura de nombres de casa para salidad de archivos comprimidos
 #################### Cucuta ##########################################
 

@@ -29,7 +29,7 @@ def count_elapsed_time(f):
         return ret
     
     return wrapper
-varData , monht, enter, mes, years, datefin= control()
+varData , monht, enter, mes, years, datefin, dateinit , dateformat = control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
@@ -276,7 +276,16 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
 
     def CDT_Kiberly():
-        b = CDTExtract(5,20230531,'31/05/2023')
-        b.salesCDTArauca()
+        """Funcion de CDT
+        
+        Keyword arguments: CDT-Dos bases 
+        Generar Dataa:
+
+        Return: Retorna el envio de dos archivos planos enviados mediante el FTP
+        para arauca actualizar manualmente el years cuando se quiera consultar 
+        datos de meses anteriores
+        """  
+        b = CDTExtract(years,dateinit,dateformat,datefin)
+        b.ExecutorSales()
 
 

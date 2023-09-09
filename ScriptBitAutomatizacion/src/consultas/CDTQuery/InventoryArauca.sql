@@ -12,7 +12,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '{3}'
+	f.FacFec BETWEEN '20200101' and '{4}'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and k.artsec = a.artsec
@@ -28,7 +28,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '{3}'AND
+	f.FacFec BETWEEN '20200101' and '{4}'AND
 	k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and k.artsec = a.ArtSec
@@ -53,6 +53,6 @@ LEFT JOIN InventarioFamilia FF ON
 LEFT JOIN InventarioSubgrupo SS ON
 	SS.InvSubGruCod = FF.InvSubGruCod
 where
-	InvGruCod IN('{4}') ) as TA
+	InvGruCod IN('{3}') ) as TA
 --WHERE TA.item = '1221318'
 GROUP by TA.item, TA.salpack, TA.NameItem, TA.quanty, TA.Valorisado

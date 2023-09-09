@@ -3,7 +3,7 @@ TB."CodePais" || '|' || TB."CodCliente" || '|' || TB."CodProducto" || '|' || TB.
 FROM(
 SELECT
     'CO' as "CodePais",
-'004015849970403001' AS "CodCliente",
+'{0}' AS "CodCliente",
     ta."CodProducto",
     ta."NombreProducto",
     TO_DECIMAL(
@@ -15,8 +15,8 @@ SELECT
         ), 10, 3
     ) as "Cajas",
     TO_DECIMAL(SUM(ta."CostoInventario"), 10, 3) as "Costo",
-    '31/05/2023' as "Fecha",
-'0040158499' AS "ShipTo"
+    '{2}' as "Fecha",
+'{1}' AS "ShipTo"
 FROM
     (
         SELECT
@@ -27,25 +27,25 @@ FROM
             IFNULL(CAST(SUM(T0."InQty") - SUM(T0."OutQty") + IFNULL(
                 (
                     SELECT SUM(TA."InQty") - SUM(TA."OutQty") 
-                    FROM OINM TA 
+                    FROM {3}.OINM TA 
                     WHERE (TA."CreateDate" <= LAST_DAY(ADD_MONTHS('20220101', -1))) 
                     AND TA."ItemCode" = T0."ItemCode" 
-                    AND (TA."Warehouse" IN (006, 030))
+                    AND (TA."Warehouse" IN ({4}))
                 ), 
                 0
             ) AS INT), '0') AS "Stock",
             IFNULL(T1."InvntryUom", '') AS "TipoStok",
             T1."SalPackUn" AS "Embalado"
         FROM
-            OINM T0
-        INNER JOIN OITM T1 ON
+            {3}.OINM T0
+        INNER JOIN {3}.OITM T1 ON
             T1."ItemCode" = T0."ItemCode"
-        INNER JOIN OITB T2 ON
+        INNER JOIN {3}.OITB T2 ON
             T2."ItmsGrpCod" = T1."ItmsGrpCod"
         WHERE
-            (T0."CreateDate" BETWEEN '20220101' AND '20230531')
-            AND T2."ItmsGrpNam" LIKE CONCAT('KIMBERLY ICH', '%')
-            AND (T0."Warehouse" IN (006, 030))
+            (T0."CreateDate" BETWEEN '20220101' AND '{6}')
+            AND T2."ItmsGrpCod" in ({5})
+            AND (T0."Warehouse" IN ({4}))
         GROUP BY
             T0."ItemCode",
             TO_VARCHAR(LAST_DAY(T0."CreateDate"), 'YYYYMMDD'),
@@ -55,9 +55,9 @@ FROM
             T1."SalPackUn"
     ) AS ta
     -- Desagregar Combos
-LEFT JOIN ITT1 T13 ON
+LEFT JOIN {3}.ITT1 T13 ON
     Ta."CodProducto" = T13."Father"
-LEFT JOIN OITM T14 ON
+LEFT JOIN {3}.OITM T14 ON
     T13."Code" = T14."ItemCode"
 GROUP BY
     ta."CodProducto",
