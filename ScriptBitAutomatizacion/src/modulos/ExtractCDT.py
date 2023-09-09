@@ -15,7 +15,7 @@ class CDTExtract:
     def __init__(self, DateYear, DateEnd, DateForma,StartDate):
         self.DateYear = DateYear
         self.DateEnd = DateEnd
-        self.DateForma = DateEnd.strftime("%d%m%d")
+        self.DateForma = DateForma
         self.StartDate = StartDate
 
     def salesCDTArauca (self):
