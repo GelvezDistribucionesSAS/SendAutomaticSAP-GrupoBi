@@ -9,18 +9,18 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-RutaGlobal = '/home/wilmer/Proyectos/salida/GrupoBit/'
-rutaArauca ="/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-rutaBase = "/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-rutaCDT = "/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
+##RutaGlobal = '/home/ruta/Proyectos/salida/GrupoBit/'
+##rutaArauca ="/home/ruta/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+##rutaBase = "/home/ruta/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+##rutaCDT = "/home/ruta/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-##RutaGlobal = "/home/Info/GrupoBit/"
+RutaGlobal = "/home/Info/GrupoBit/"
 #Rutas de consulta sql de SalidaData
-##rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-##rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-##rutaCDT = "/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
+rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+rutaCDT = "/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios

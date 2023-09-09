@@ -15,7 +15,7 @@ class CDTExtract:
     def __init__(self, DateYear, DateEnd, DateForma,StartDate):
         self.DateYear = DateYear
         self.DateEnd = DateEnd
-        self.DateForma = DateForma
+        self.DateForma = DateEnd.strftime("%d%m%d")
         self.StartDate = StartDate
 
     def salesCDTArauca (self):
@@ -83,10 +83,10 @@ class CDTExtract:
     def ExecutorSales(self):
         global salesData 
         global inventoryData
-        """  self.salesCDTArauca()
+        self.salesCDTArauca()
         self.salesCDTSAP()
         GuardarTextoCDT(salesData,RutaGlobal+CDT_Kimberly+f'Ventas_{self.DateEnd}')
-        print("----Se Genero Ventas----------") """
+        print("----Se Genero Ventas----------")
         self.inventoryCDTArauca()
         self.inventoryCDTDAP()
         GuardarTextoCDT(inventoryData,RutaGlobal+CDT_Kimberly+f'Inventario_{self.DateEnd}')
