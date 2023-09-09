@@ -33,6 +33,7 @@ __pycache__/
 *$py.class
 testing/
 salida/
+*json
 /ScriptBitAutomatizacion/src/consultas/salida/*.zip
 # C extensions
 *.so

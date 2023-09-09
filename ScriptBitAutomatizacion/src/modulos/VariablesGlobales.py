@@ -9,18 +9,18 @@ import selectors, sys
  """
 ############# Ruta de Testing ################################################
 #Definción de rutas globales
-##RutaGlobal = '/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/salida/'
-##rutaArauca ="/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-##rutaBase = "/home/sistemas/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-
+RutaGlobal = '/home/wilmer/Proyectos/salida/GrupoBit/'
+rutaArauca ="/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+rutaBase = "/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+rutaCDT = "/home/wilmer/Proyectos/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
 #########################################################################################
 ###########Ruta de productiva ###################
 #Definción de rutas globales
-RutaGlobal = "/home/Info/GrupoBit/"
+RutaGlobal = "/home/DATA/ArchivosBitFedora/GrupoBit/"
 #Rutas de consulta sql de SalidaData
-rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
-rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
-rutaCDT = "/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
+##rutaBase ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasCucuta/"
+##rutaArauca ="/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/ConsultasArauca/"
+##rutaCDT = "/proyectoBit/SendAutomaticSAP-GrupoBi/ScriptBitAutomatizacion/src/consultas/CDTQuery/"
 #RutaBaseGran = "/GrupoBit/GrupoBit/ScriptBitAutomatizacion/src/consultas/ConsultasGranDistribuidor"
 ###########################################################################################
 #Importación de Diccionarios
@@ -60,9 +60,8 @@ gir_NESTLE_212587 = 'GIR_NESTLE_212587/'
 cu_COLGATE_210973 = 'CUC_COLGATE_210973/'
 total_GELVEZ = 'GELVEZ_212401/'
 Ara_BRINSA= 'BRINSA_213173/'
+CDT_Kimberly = 'CDT_Kimberly/'
 
-
-#
 
 #Entrada de movimiento de fecha 
 VarDateSQL= " ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{})),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )"
@@ -141,4 +140,5 @@ totalGelvez = 'GELVEZ_212401_{}.zip'
 
 #######################ARAUCA############################################
 brinsaArauca = 'BRINSA_213173_{}.zip'
+
        

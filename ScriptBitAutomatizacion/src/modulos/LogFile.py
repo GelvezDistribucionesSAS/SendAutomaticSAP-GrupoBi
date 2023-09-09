@@ -6,16 +6,9 @@ from time import time
 from .ModuloFtp import send_FTP
 import os
 import dotenv
-
+from .ExtractCDT import CDTExtract
 dotenv.load_dotenv()
-""" La siguiente estructura se encarga de la gestion del llamado de modulos para la validación de los mismos por casa 
 
-Rutas : Es la Variable de la Ruta Global
-casaruta : Es la variable que contiene el nombre de la carpeta de la casa
-NameArchivo : Es la varible que contiene el nombre del archivo de texto a generar Esta de define en el modulo ejecutor casa
-cede : Define las cede 1 para cucuta 2 para gran distribuidor
-condiciòn: Define el llamado desde el diccionario a que casa pertene  la consulta de condicciòn de los datos.
-"""
 
 ########################### Decorador Time ejecución #####################################
 
@@ -40,8 +33,14 @@ varData , monht, enter, mes, years, datefin= control()
 ##########################################################################################
 #casas
 class ExecutionHouse:
-    """Se encarga de  dar la ejecucción  de cada una de la csas comerciales de manera manual se realiza
-    la creacción de cada objeto."""
+    """ La siguiente estructura se encarga de la gestion del llamado de modulos para la validación de los mismos por casa 
+
+Rutas : Es la Variable de la Ruta Global
+casaruta : Es la variable que contiene el nombre de la carpeta de la casa
+NameArchivo : Es la varible que contiene el nombre del archivo de texto a generar Esta de define en el modulo ejecutor casa
+cede : Define las cede 1 para cucuta 2 para gran distribuidor
+condiciòn: Define el llamado desde el diccionario a que casa pertene  la consulta de condicciòn de los datos.
+"""
     @count_elapsed_time
     def bellezacucuta():
         be = GenerateFiles(Belleza, 157, os.getenv('USERBELLEZACUCUTA'), os.getenv('PASSWORDBELLEZA'), '006', 'HBTGELVEZ_CUCUTA', varData, monht, datefin)
@@ -173,6 +172,7 @@ class ExecutionHouse:
         Comprimir01(be.house_route,kimberlyPañGiron.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)  
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,kimberlyPañGiron.format(enter))
+        
     def Giron_kimberly_ICH():
         be = GenerateFiles(gir_ICH_KIMBERLY_209968, 144, os.getenv('USERGIRONICH'), os.getenv('PASSWORDGIRONICH'), '014', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
         be.output_municipality()
@@ -274,5 +274,9 @@ class ExecutionHouse:
         Comprimir01(a.house_route,brinsaArauca.format(enter))
         LimpiarRuta(RutaGlobal+a.house_route)
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
+
+    def CDT_Kiberly():
+        b = CDTExtract(5,20230531,'31/05/2023')
+        b.salesCDTArauca()
 
 

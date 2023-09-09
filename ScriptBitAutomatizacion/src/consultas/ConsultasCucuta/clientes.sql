@@ -3,7 +3,7 @@ SELECT
 SELECT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	IFNULL(T1."CardName",'NN') || '#' ||
+	IFNULL(REPLACE(REPLACE(T5."CardName", '\n', ' '), '\r', ' '),'NN') || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
@@ -60,7 +60,7 @@ UNION ALL
 SELECT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	IFNULL(T1."CardName",'NN') || '#' ||
+	IFNULL(REPLACE(REPLACE(T5."CardName", '\n', ' '), '\r', ' '),'NN') || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||

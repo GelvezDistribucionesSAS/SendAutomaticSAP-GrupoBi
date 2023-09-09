@@ -9,7 +9,7 @@ FROM
 	(
 	SELECT
 		'CO' AS "Pais" ,
-		'004015849970403001' AS "Sold",
+		'{0}' AS "Sold",
 		T1."CardCode" AS "CodPos" ,
 		T1."CardName" AS "Nombre" ,
 		TO_NVARCHAR(REPLACE(T1."Address", CHAR(13), '')) AS "Direccion" ,
@@ -40,7 +40,7 @@ FROM
 		T5."GroupCode" AS "CodBarrio",
 		T5."LicTradNum" AS "CodTipoPtoVta",
 		T1."DocNum" AS "CedulaJuridica" ,
-		'0040158499' AS "ShipTo",
+		'{1}' AS "ShipTo",
 		' ' AS "NombreZona",
 		(
 		SELECT DISTINCT 
@@ -131,16 +131,16 @@ FROM
 			TA."Father")AS P1 ON
 		T7."ItemCode" = P1."Father"
 	WHERE
-		T1."DocDate" BETWEEN '20230501' AND '20230531'
+		T1."DocDate" BETWEEN '{4}' AND '{5}'
 		--T1."DocDate" BETWEEN '20221101' AND '20221130'
 		--T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -1)),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
-		AND T8."ItmsGrpCod" = 144
+		AND T8."ItmsGrpCod" = {2}
 		--	Buscar por códigos
-		AND T2."WhsCode" IN (006)
+		AND T2."WhsCode" IN ({3})
 UNION ALL
 	SELECT 
 		'CO' AS "Pais" ,
-		'004015849970403001' AS "Sold",
+		'{0}' AS "Sold",
 		T1."CardCode" AS "CodPos" ,
 		T1."CardName" AS "Nombre" ,
 		TO_NVARCHAR(REPLACE(T1."Address", CHAR(13), '')) AS "Direccion" ,
@@ -171,7 +171,7 @@ UNION ALL
 		T5."GroupCode" AS "CodBarrio",
 		T5."LicTradNum" AS "CodTipoPtoVta",
 		T1."DocNum" AS "CedulaJuridica" ,
-		'0040158499' AS "ShipTo",
+		'{1}' AS "ShipTo",
 		' ' AS "NombreZona",
 		(
 		SELECT
@@ -262,6 +262,6 @@ UNION ALL
 		T7."ItemCode" = P1."Father"
 	WHERE
 		T1."DocDate" BETWEEN '20230501' AND '20230531'
-		AND T8."ItmsGrpCod" = 144
+		AND T8."ItmsGrpCod" = {2}
 		--	Buscar por códigos
-		AND T2."WhsCode" IN (006) ) ta
+		AND T2."WhsCode" IN ({3}) ) ta
