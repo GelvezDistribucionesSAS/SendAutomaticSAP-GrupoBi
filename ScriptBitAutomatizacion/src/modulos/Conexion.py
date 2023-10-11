@@ -39,6 +39,7 @@ def conect_Mantis():
                            str(os.getenv('PASSWORDMANTIS')),
                            str(os.getenv('DBMANTIS')))
     return conn
+    
 def conectMantis(query):
     cursor = conect_Mantis().cursor()
     cursor.execute(query)

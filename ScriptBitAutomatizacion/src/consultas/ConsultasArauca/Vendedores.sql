@@ -21,6 +21,6 @@ WHERE
 	WHERE
 		t4.FacTipTra in ('FDV','NCR')
 		AND t4.FacEst = 'A'
-		AND year(facfec)= 2023 AND month(facfec) = 8
+		AND year(facfec)= 2023 AND month(facfec) = 9
 				AND t4.FacVenCod = V.VenCod
 				AND t3.InvGruCod IN ('3'))<> 0

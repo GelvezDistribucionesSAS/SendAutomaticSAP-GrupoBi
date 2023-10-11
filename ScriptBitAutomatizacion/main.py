@@ -20,7 +20,7 @@ def main():
     ExecutionHouse.giron_nestle()
     ExecutionHouse.giron_nestleCandelaria()
     ExecutionHouse.brisan_Arauca()
-    ExecutionHouse.total_gelvez()
+    """ExecutionHouse.total_gelvez()"""
     ExecutionHouse.CDT_Kiberly()
 if __name__ == '__main__':
     main()

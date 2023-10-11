@@ -259,7 +259,7 @@ class GenerateFiles(ReadSQL):
         print("Se Genero: " + TIPOSNEGOCIOS)
 
     def controlTotalArauca(self):
-        text = ConverText.converTextFormatSQLArauca('totalControlGeneral.sql',self.number_house,8)
+        text = ConverText.converTextFormatSQLArauca('totalControlGeneral.sql',self.number_house,9)
         data = conectMantis(text)
         data = PasarArreglo(data)
         print(data[0])
@@ -268,14 +268,14 @@ class GenerateFiles(ReadSQL):
         print("Se Genero: " + TOTALES)
 
     def sellersArauca(self):
-        text = ConverText.converTextFormatSQLArauca('vendedoresGeneral.sql',self.number_house,8)
+        text = ConverText.converTextFormatSQLArauca('vendedoresGeneral.sql',self.number_house,9)
         data = conectMantis(text)
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + VENDEDORES))
         print("Se Genero: " + VENDEDORES)
 
     def salesArauca(self):
-        text = ConverText.converTextFormatSQLArauca('ventasGeneral.sql',self.number_house,8)
+        text = ConverText.converTextFormatSQLArauca('ventasGeneral.sql',self.number_house,9)
         data = conectMantis(text)
         data = PasarArreglo(data)
         GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + VENTAS))
