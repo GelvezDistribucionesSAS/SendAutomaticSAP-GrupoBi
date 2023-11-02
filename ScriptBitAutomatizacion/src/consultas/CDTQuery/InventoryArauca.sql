@@ -1,5 +1,5 @@
 SELECT 
-CONCAT( 'CO','|','{0}','|',TA.item,'|',TA.NameItem,'|',sum(TA.quanty),'|',TA.Valorisado,'|{1}|{2}') 
+CONCAT( 'CO','|','{0}','|',TA.item,'|',TA.NameItem,'|',sum(TA.quanty),'|',TA.Valorisado,'|{2}|{1}') 
 from(
 select
 (replace(CONVERT(varchar, getdate(), 11), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(a.ArtCod  AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,

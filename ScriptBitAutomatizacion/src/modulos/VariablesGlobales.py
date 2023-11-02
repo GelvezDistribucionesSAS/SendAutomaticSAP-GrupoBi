@@ -101,8 +101,8 @@ def control():
         oneDay = timedelta(days=1)
         VarFormat = VarDateSQL.format(month_start_control())
         enter = str(Date.strftime("%Y6%m%d"))
-        mes = str(Date.strftime("%Y"))
-        years = str(Date.strftime("%m"))
+        mes = str(Date.strftime("%m"))
+        years = str(Date.strftime("%Y"))
         InvetoryValidor = "CURRENT_DATE,-{0}".format(month_start_control())
         datefin = datetime.now()- oneDay
         dateinit = datefin.replace(day= 1)

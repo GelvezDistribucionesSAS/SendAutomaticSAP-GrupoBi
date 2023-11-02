@@ -54,7 +54,9 @@ left join Barrio b on TA.BarCod  = b.BarCod
 left join Ciudad ci on TA.CliCiuCod = ci.CiuCod 
 where
 	year(facfec)= 2023
-	and month(facfec)= {2}
+	and month(facfec)= 10
+	and day(facfec) <= 29
+		-- Puedes indicar una día en concreto como límite.
 	and factiptra in('FDV', 'NCR')
 	AND FACEST = 'A'
 	and InvGruCod IN('{3}')

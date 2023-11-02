@@ -12,7 +12,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '20231031'
+	f.FacFec BETWEEN '20200101' and '20231130'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and artsec = a.artsec
