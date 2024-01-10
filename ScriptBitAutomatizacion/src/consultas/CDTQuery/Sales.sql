@@ -41,11 +41,19 @@ FROM
 		REPLACE(IFNULL(IFNULL(T5."Phone1", IFNULL(T5."Phone2", T5."Cellular")), '0'),'"','') AS "Telefono",
 		T1."SlpCode" AS "CodAgente",
 		T11."SlpName" AS "NombreAgente",
-		T2."ItemCode" AS "CodigoProducto",
-		T2."Dscription" AS "NombreProducto",
+		 CASE
+		 	WHEN T13."Father" IS NULL THEN T7."ItemCode"
+		 	ELSE T14."ItemCode"
+		 END AS "CodigoProducto",
+		-- T2."ItemCode" AS "CodigoProducto",
+		 CASE
+		 	WHEN T13."Father" IS NULL THEN T7."ItemName"
+		 	ELSE T14."ItemName"
+		 END AS "NombreProducto",
+		-- T2."Dscription" AS "NombreProducto",
 		TO_DECIMAL(CASE 
-		WHEN T13."Father" IS NULL THEN t2."Quantity" / T7."SalPackUn" 
-		ELSE T2."Quantity" * T13."Quantity" / T14."SalPackUn" 
+			WHEN T13."Father" IS NULL THEN T2."Quantity"
+            ELSE T2."Quantity" * T13."Quantity"
         END
         ) AS "CantidadUnidad",
 		CASE
@@ -55,18 +63,26 @@ FROM
                 CASE
                     WHEN T13."Father" IS NULL 
                         THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-                    ELSE (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * (T13."Quantity" / P1."Quantity") 
+                    ELSE ((T13."Price" * T13."Quantity") * (T2."Quantity") / (T2."GPTtlBasPr" / T2."LineTotal"))
                 END 
         END AS "MontoNeto",
+		
+		
 		CASE
-            WHEN T2."ItemCode" LIKE '%B%'
+
+
+
+            WHEN T2."ItemCode" OR T13."Code" LIKE '%B%'
                 THEN '0'
             ELSE
-                CASE
+	
+		        CASE
                     WHEN T13."Father" IS NULL 
                         THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-                    ELSE (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * (T13."Quantity" / P1."Quantity") 
-                END 
+                    ELSE ((T13."Price" * T13."Quantity") * (T2."Quantity") / (T2."GPTtlBasPr" / T2."LineTotal"))
+        
+		
+		        END 
         END AS "MontoBruto",
 		'0' AS "Costo",
 		TO_VARCHAR(T1."DocDate", 'DD/MM/YYYY') AS "Fecha",
@@ -203,11 +219,19 @@ FROM
 		REPLACE(IFNULL(IFNULL(T5."Phone1", IFNULL(T5."Phone2", T5."Cellular")), '0'),'"','') AS "Telefono",
 		T1."SlpCode" AS "CodAgente",
 		T11."SlpName" AS "NombreAgente",
-		T2."ItemCode" AS "CodigoProducto",
-		T2."Dscription" AS "NombreProducto",
+		 CASE
+		 	WHEN T13."Father" IS NULL THEN T7."ItemCode"
+		 	ELSE T14."ItemCode"
+		 END AS "CodigoProducto",
+		-- T2."ItemCode" AS "CodigoProducto",
+		 CASE
+		 	WHEN T13."Father" IS NULL THEN T7."ItemName"
+		 	ELSE T14."ItemName"
+		 END AS "NombreProducto",
+		-- T2."Dscription" AS "NombreProducto",
 		-1 * TO_DECIMAL(CASE 
-		WHEN T13."Father" IS NULL THEN t2."Quantity" / T7."SalPackUn" 
-            ELSE T2."Quantity" * T13."Quantity" / T14."SalPackUn" 
+		WHEN T13."Father" IS NULL THEN T2."Quantity"
+            ELSE T2."Quantity" * T13."Quantity"
         END
         ) AS "CantidadUnidad",
 		CASE
@@ -217,7 +241,7 @@ FROM
                 CASE
                     WHEN T13."Father" IS NULL 
                         THEN -(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-                    ELSE -(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * (T13."Quantity" / P1."Quantity") 
+                    ELSE -((T13."Price" * T13."Quantity") * (T2."Quantity") / (T2."GPTtlBasPr" / T2."LineTotal"))
                 END 
         END AS "MontoNeto",
 		CASE
@@ -227,7 +251,7 @@ FROM
                 CASE
                     WHEN T13."Father" IS NULL 
                         THEN -(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-                    ELSE -(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * (T13."Quantity" / P1."Quantity")
+                    ELSE -((T13."Price" * T13."Quantity") * (T2."Quantity") / (T2."GPTtlBasPr" / T2."LineTotal"))
                 END 
         END AS "MontoBruto",
 		' ' AS "Costo",
@@ -352,8 +376,8 @@ FROM
 				TA."Father")AS P1 ON
 			T7."ItemCode" = P1."Father"
 	WHERE
-		T1."DocDate" BETWEEN '{5}' AND '{6}'
-		--T1."DocDate" BETWEEN '20231001' AND '20231031'
+		--T1."DocDate" BETWEEN '{5}' AND '{6}'
+		T1."DocDate" BETWEEN '20231001' AND '20231130'
 		--T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -1)),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 		AND T8."ItmsGrpCod" = {2}
 		--	Buscar por códigos

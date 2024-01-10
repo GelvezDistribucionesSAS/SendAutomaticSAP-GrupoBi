@@ -43,7 +43,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
 """
     @count_elapsed_time
     def bellezacucuta():
-        be = GenerateFiles(Belleza, 157, os.getenv('USERBELLEZACUCUTA'), os.getenv('PASSWORDBELLEZA'), '006', 'HBTGELVEZ_CUCUTA', varData, monht, datefin)
+        be = GenerateFiles(Belleza, 157, os.getenv('USERBELLEZACUCUTA'), os.getenv('PASSWORDBELLEZA'), '006,030', 'HBTGELVEZ_CUCUTA', varData, monht, datefin)
         be.output_municipality()
         be.output_customers()
         be.output_business_type()
@@ -253,7 +253,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         tl.output_business_type_total()
         tl.output_inventory_total()
         tl.output_products_total()
-        tl.output_sellin_total()
+        #tl.output_sellin_total()
         tl.output_sales_total()
         tl.output_sellers_total()
         tl.output_totals_total()

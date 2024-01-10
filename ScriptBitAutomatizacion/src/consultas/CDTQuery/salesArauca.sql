@@ -10,9 +10,18 @@ SELECT CONCAT(
 		v.VenNom , '|',
 		a.ArtCod ,'|',
 		a.ArtNom , '|',
-		ltrim(rtrim(str((k.KarUni  + (karcaj * karartemb))* case when factiptra = 'NCR' THEN -1 else 1 end))) ,'|',
+		--CONVERT(DECIMAL(10,3),(ltrim(rtrim(str(((k.KarUni  + (karcaj * karartemb))/karartemb)* case when factiptra = 'NCR' THEN -1 else 1 end, 10, 3))))) ,'|',
+		--ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END, 15, 3))) , '|',
+		--ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END, 15, 3))) , '|',
+		--CANTIDAD
+		ltrim(rtrim(str((k.KarUni  + (karcaj * karartemb))* case when factiptra = 'NCR' THEN -1 else 1 end))) , '|',
+		--Monto neto
 		ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END))) , '|',
+		--Monto Bruto
 		ltrim(rtrim(str(case when factiptra = 'NCR' THEN karvaltotmendes *-1 ELSE karvaltotmendes END))) , '|',
+		--ltrim(rtrim(str(case when factiptra = 'NCR' THEN (karpre *(karuni +(karcaj * karartemb)))*-1 ELSE karpre END))) , '|',
+
+
 		'0','|',
 		CONVERT(varchar, facfec, 103), '|',
 		' ', '|',
@@ -55,7 +64,7 @@ left join Ciudad ci on TA.CliCiuCod = ci.CiuCod
 where
 	year(facfec)= 2023
 	and month(facfec)= 10
-	and day(facfec) <= 29
+	and day(facfec) <= 31
 		-- Puedes indicar una día en concreto como límite.
 	and factiptra in('FDV', 'NCR')
 	AND FACEST = 'A'

@@ -10,7 +10,7 @@ SELECT
 	--(SELECT CONCAT(TA."Street",CONCAT(' ',TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion",
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
 	'SIN REPRESENTANTE' || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" ) AS "Clientes"
 --	DOCUMENTO
 FROM
@@ -67,7 +67,7 @@ SELECT
 	--(SELECT CONCAT(TA."Street",CONCAT(' ',TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion",
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
 	'SIN REPRESENTANTE' || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" ) AS "Clientes"
 --	DOCUMENTO
 FROM

@@ -2,7 +2,7 @@ SELECT
 CONCAT(max(TA.EndDate),'#', TA.CodeItem,'#',sum(TA.quanty),'#',TA.salpack) 
 from(
 select
-	(replace(CONVERT(varchar, getdate(), 11), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtFicTec AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,
+	(replace(CONVERT(varchar, getdate(), 12), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtFicTec AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,
 	convert( int,
 	isnull((
 SELECT

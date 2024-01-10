@@ -7,7 +7,7 @@ SELECT DISTINCT * FROM(SELECT
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" || '#' || 
 T2."WhsCode" || '#' ||
 CASE T2."WhsCode"
@@ -71,7 +71,7 @@ SELECT
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" || '#' || 
 T2."WhsCode" || '#' ||
 CASE T2."WhsCode"
@@ -136,7 +136,7 @@ SELECT DISTINCT * FROM (SELECT
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" || '#' || 
 T2."WhsCode" || '#' ||
 CASE T2."WhsCode"
@@ -201,7 +201,7 @@ SELECT
 	CONCAT(IFNULL(T3."StreetS",'' ),CONCAT(' ' ,IFNULL(T3."BlockS",'Principal Gelvez'))) || '#' ||
 	--(SELECT CONCAT(TA."Street" || '#' ||CONCAT(' ' || '#' ||TA."Block")) FROM "CRD1" TA WHERE TA."CardCode" = T1."CardCode" AND TA."LineNum" = 0) AS "Direccion" || '#' ||
 	IFNULL(T5."Phone1",IFNULL(T5."Phone2",IFNULL(T5."Cellular",'0'))) || '#' ||
-	IFNULL(T3."U_HBT_MunMedS",'54001') || '#' ||
+	IFNULL(T5."U_HBT_MunMed",'54001') || '#' ||
 	T6."GroupCode" || '#' || 
 T2."WhsCode" || '#' ||
 CASE T2."WhsCode"

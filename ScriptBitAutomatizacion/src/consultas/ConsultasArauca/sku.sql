@@ -2,7 +2,7 @@ SELECT
 CONCAT( TA.item,'{',TA.NameItem,'{RG{',TA.salpack,'{',TA.item,'{',TA.CodeG,'{A') 
 from(
 select
-(replace(CONVERT(varchar, getdate(), 11), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtFicTec AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,
+(replace(CONVERT(varchar, getdate(), 12), '/', '')) as EndDate,  + REPLACE(REPLACE(RTRIM(REPLACE(RTRIM(LTRIM(ISNULL(CAST(ArtFicTec AS VARCHAR(249)), ''))), '', '')), CHAR(13), ''), CHAR(10), '') as item ,
 	convert( int,
 	isnull((
 SELECT
@@ -12,7 +12,7 @@ SELECT
 	LEFT JOIN Factura f ON
 		f.FacSec = k.FacSec
 	WHERE
-	f.FacFec BETWEEN '20200101' and '20231130'
+	f.FacFec BETWEEN '20200101' and '20240131'
 		AND k.SubBodSucCCSec = 2
 		and f.facest = 'A'
 		and artsec = a.artsec
