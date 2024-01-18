@@ -59,7 +59,10 @@ gir_NESTLE_211851 = 'GIR_NESTLE_211851/'
 gir_NESTLE_212587 = 'GIR_NESTLE_212587/'
 cu_COLGATE_210973 = 'CUC_COLGATE_210973/'
 total_GELVEZ = 'GELVEZ_212401/'
-Ara_BRINSA= 'BRINSA_213173/'
+Ara_BRINSA = 'BRINSA_213173/'
+JGB_213528 = 'JGB_213528/'
+JGB_213529 = 'JGB_213529/'
+JGB_213376 = 'JGB_213376/'
 CDT_Kimberly = 'CDT_Kimberly/'
 
 
@@ -131,7 +134,9 @@ KimberlyIchCucuta = 'KIMBERLY_208903_{}.zip'
 NestleCucuta = 'NESTLE_212385_{}.zip'
 KimberlyPañCucuta = 'KIMBERLY_209321_{}.zip'
 ColgateCucuta = 'COLGATE_210973_{}.zip'
+JGBCucuta = 'JGB_213528_{}.zip'
 ###################GranDistribuidor #########################################
+JGBGiron = 'JGB_213529_{}.zip'
 edgewellGiron = 'EDGEWELL_211187_{}.zip'
 energeizerGiron = 'ENERGIZER_210761_{}.zip'
 kimberlyIchGiron = 'KIMBERLY_209968_{}.zip'
@@ -143,5 +148,6 @@ totalGelvez = 'GELVEZ_212401_{}.zip'
 
 #######################ARAUCA############################################
 brinsaArauca = 'BRINSA_213173_{}.zip'
+JGBArauca = 'JGB_213376_{}.zip'
 
        

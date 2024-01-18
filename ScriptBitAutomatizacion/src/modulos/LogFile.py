@@ -158,7 +158,41 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         Comprimir01(be.house_route,ColgateCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, ColgateCucuta.format(enter))
-        
+
+
+
+
+    def jgb_cucuta():
+        be = GenerateFiles(JGB_213528, 148, os.getenv('USERJGBCU'), os.getenv('PASSWORDJGBCU'), '006,030', 'HBTGELVEZ_CUCUTA', varData, monht, datefin)
+        be.output_municipality()
+        be.output_customers()
+        be.output_business_type()
+        be.output_inventory()
+        be.output_products()
+        be.output_sales()
+        be.output_sellers()
+        be.output_totals()
+        Comprimir01(be.house_route, JGBCucuta.format(enter))
+        LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password,RutaGlobal, be.house_route, JGBCucuta.format(enter))
+
+
+    def jgb_giron():
+        be = GenerateFiles(JGB_213529, 148, os.getenv('USERJGBGD'), os.getenv('PASSWORDJGBGD'), '014', 'HBTGRANDISTRIBUIDOR', varData, monht, datefin)
+        be.output_municipality()
+        be.output_customers()
+        be.output_business_type()
+        be.output_inventory()
+        be.output_products()
+        be.output_sales()
+        be.output_sellers()
+        be.output_totals()
+        Comprimir01(be.house_route,JGBGiron.format(enter))
+        LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP, be.password,RutaGlobal, be.house_route, JGBGiron.format(enter))
+
+
+
     def cali_pañ_kimberly():
         be = GenerateFiles(CAL_PAÑ_KIMBERLY_210541, 145, os.getenv('USERCALIICH'),os.getenv('PASSWORDCALIICH'),'010,019', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
         be.output_municipality()
@@ -252,8 +286,8 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         tl.output_customers_total()
         tl.output_business_type_total()
         tl.output_inventory_total()
-        tl.output_products_total()
-        #tl.output_sellin_total()
+        tl.output_products_total() #SKU
+       #tl.output_sellin_total() #
         tl.output_sales_total()
         tl.output_sellers_total()
         tl.output_totals_total()
@@ -274,6 +308,24 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         Comprimir01(a.house_route,brinsaArauca.format(enter))
         LimpiarRuta(RutaGlobal+a.house_route)
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
+
+    def jgb_arauca():
+        a = GenerateFiles(JGB_213376,2,os.getenv('USERJGBAR'), os.getenv('PASSWORDJGBAR'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        a.customerArauca()
+        a.iventoryArauca()
+        a.skuArauca()
+        a.typeBussionesArauca()
+        a.controlTotalArauca()
+        a.salesArauca()
+        a.sellersArauca()
+        a.output_municipality()
+        Comprimir01(a.house_route,JGBArauca.format(enter))
+        LimpiarRuta(RutaGlobal+a.house_route)
+        send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, JGBArauca.format(enter))
+
+
+
+
 
     def CDT_Kiberly():
         """Funcion de CDT

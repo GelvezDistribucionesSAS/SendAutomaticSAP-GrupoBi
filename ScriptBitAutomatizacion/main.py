@@ -14,14 +14,17 @@ def main():
     ExecutionHouse.cucuta_kimberly_pañaleras()
     ExecutionHouse.giron_edgwell()
     ExecutionHouse.cucuta_colgate()
+    """ExecutionHouse.jgb_cucuta()
+    ExecutionHouse.jgb_giron()
+    ExecutionHouse.jgb_arauca()"""
     ExecutionHouse.cali_pañ_kimberly()
     ExecutionHouse.Giron_kimberly_ICH()
     ExecutionHouse.giron_eveready()
     ExecutionHouse.giron_nestle()
     ExecutionHouse.giron_nestleCandelaria()
     ExecutionHouse.brisan_Arauca()
-    ExecutionHouse.total_gelvez()
-    ExecutionHouse.CDT_Kiberly()
+    """ExecutionHouse.total_gelvez()"""
+    """ExecutionHouse.CDT_Kiberly()"""
 if __name__ == '__main__':
     main()
 
