@@ -1,3 +1,5 @@
+--CONSULTA EN REVISIÓN (NO ESTÁ EN PRODUCTIVO)
+
 SELECT 
 CONCAT( 'CO','|','{0}','|',TA.item,'|',TA.NameItem,'|',sum(TA.quanty),'|',TA.Valorisado,'|{2}|{1}') 
 from(

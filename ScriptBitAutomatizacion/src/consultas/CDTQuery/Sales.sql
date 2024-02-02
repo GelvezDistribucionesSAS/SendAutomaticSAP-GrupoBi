@@ -29,6 +29,7 @@ SELECT
     || '|' || ta."NombreCiudad" -- Placeholder
     || '|' || ta."NombreBarrio" -- Placeholder
     || '|' || ta."NombreTipoPtoVta"
+
 FROM
 	(
 	SELECT
@@ -39,6 +40,8 @@ FROM
 		T5."CardCode" AS "CodPos",
 
 		T5."CardName" AS "Nombre",
+
+        T7."SalUnitMsr" AS "TipoMedida", 
 
 		TO_NVARCHAR(
 			REPLACE(T1."Address", CHAR(13), '')
@@ -71,7 +74,7 @@ FROM
 		END AS "NombreProducto",
 
 		CASE
-			WHEN T13."Father" IS NULL 
+			WHEN T13."Father" IS NULL
 				THEN
 					CASE
 						WHEN T7."SalUnitMsr" = 'BULTO'
@@ -89,14 +92,14 @@ FROM
 		CASE
 			WHEN T13."Father" IS NULL 
 				THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-				--	Cálculo de la participación del producto regular dentro del combo según su precio
+				--	CÃ¡lculo de la participaciÃ³n del producto regular dentro del combo segÃºn su precio
 			ELSE ((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * ((T13."Price" * T13."Quantity") / P1."Price"))
 		END AS "MontoNeto",
 
 		CASE
 			WHEN T13."Father" IS NULL 
 				THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-				--	Cálculo de la participación del producto regular dentro del combo según su precio
+				--	CÃ¡lculo de la participaciÃ³n del producto regular dentro del combo segÃºn su precio
 			ELSE ((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * ((T13."Price" * T13."Quantity") / P1."Price"))
 		END AS "MontoBruto",
 
@@ -239,7 +242,7 @@ FROM
 					REPLACE(
 						REPLACE(
 								REPLACE(
-									SUBSTRING_REGEXPR('X([0-9](1,3)(DP|U))' IN TB."ItemName")
+									SUBSTRING_REGEXPR('X(\d+)' IN TB."ItemName") --SUBSTRING_REGEXPR('X([0-9](1,3)())' IN TB."ItemName"
 								,'X','')
 						,'DP','')
 					,'U','')
@@ -264,16 +267,14 @@ FROM
 					REPLACE(
 						REPLACE(
 								REPLACE(
-									SUBSTRING_REGEXPR('X([0-9](1,3)(DP|U))' IN TB."ItemName")
+									SUBSTRING_REGEXPR('X(\d+)' IN TB."ItemName") --SUBSTRING_REGEXPR('X([0-9](1,3)())' IN TB."ItemName"
 								,'X','')
 						,'DP','')
 					,'U','')
 				) AS "CantidadSiBulto"
 			FROM
-				{4}."ITT1" TA
-			INNER JOIN
-				{4}."OITM" TB
-					ON TA."Code" = TB."ItemCode"
+				{4}."OITM" Tb
+                
 			WHERE 
 				TB."SalUnitMsr" = 'BULTO'
 			GROUP BY
@@ -286,7 +287,7 @@ FROM
 		T1."DocDate" BETWEEN '{5}' AND '{6}'
 		--T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -1)),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 		AND T8."ItmsGrpCod" = {2}
-		--	Buscar por códigos
+		--	Buscar por cÃ³digos
 		AND T2."WhsCode" IN ({3})
 
 UNION ALL
@@ -299,6 +300,8 @@ UNION ALL
 		T5."CardCode" AS "CodPos",
 
 		T5."CardName" AS "Nombre",
+
+        T7."SalUnitMsr" AS "TipoMedida", 
 
 		TO_NVARCHAR(
 			REPLACE(T1."Address", CHAR(13)
@@ -353,7 +356,7 @@ UNION ALL
 			CASE
 				WHEN T13."Father" IS NULL 
 					THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-					--	Cálculo de la participación del producto regular dentro del combo según su precio
+					--	CÃ¡lculo de la participaciÃ³n del producto regular dentro del combo segÃºn su precio
 				ELSE ((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * ((T13."Price" * T13."Quantity") / P1."Price"))
 			END
 		) AS "MontoNeto",
@@ -362,7 +365,7 @@ UNION ALL
 			CASE
 				WHEN T13."Father" IS NULL 
 					THEN (T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100))
-					--	Cálculo de la participación del producto regular dentro del combo según su precio
+					--	CÃ¡lculo de la participaciÃ³n del producto regular dentro del combo segÃºn su precio
 				ELSE ((T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)) * ((T13."Price" * T13."Quantity") / P1."Price"))
 			END
 		) AS "MontoBruto",
@@ -507,11 +510,12 @@ UNION ALL
 					REPLACE(
 						REPLACE(
 								REPLACE(
-									SUBSTRING_REGEXPR('X([0-9](1,3)(DP|U))' IN TB."ItemName")
+									SUBSTRING_REGEXPR('X(\d+)' IN TB."ItemName") --SUBSTRING_REGEXPR('X([0-9](1,3)())' IN TB."ItemName"
 								,'X','')
 						,'DP','')
 					,'U','')
 				) AS "CantidadSiBulto"
+
 			FROM
 				{4}."ITT1" TA
 			INNER JOIN
@@ -532,16 +536,14 @@ UNION ALL
 					REPLACE(
 						REPLACE(
 								REPLACE(
-									SUBSTRING_REGEXPR('X([0-9](1,3)(DP|U))' IN TB."ItemName")
+									SUBSTRING_REGEXPR('X(\d+)' IN TB."ItemName") --SUBSTRING_REGEXPR('X([0-9](1,3)())' IN TB."ItemName"
 								,'X','')
 						,'DP','')
 					,'U','')
 				) AS "CantidadSiBulto"
 			FROM
-				{4}."ITT1" TA
-			INNER JOIN
-				{4}."OITM" TB
-					ON TA."Code" = TB."ItemCode"
+				{4}."OITM" Tb
+                
 			WHERE 
 				TB."SalUnitMsr" = 'BULTO'
 			GROUP BY
@@ -554,6 +556,6 @@ UNION ALL
 		T1."DocDate" BETWEEN '{5}' AND '{6}'
 		--T1."DocDate" BETWEEN ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -1)),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 		AND T8."ItmsGrpCod" = {2}
-		--	Buscar por códigos
+		--	Buscar por cÃ³digos
 		AND T2."WhsCode" IN ({3})
  ) ta

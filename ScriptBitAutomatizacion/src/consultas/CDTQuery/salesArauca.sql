@@ -1,3 +1,5 @@
+--CONSULTA EN REVISIÓN (NO ESTÁ EN PRODUCTIVO)
+
 SELECT CONCAT(
 	'CO','|',
 	'{0}','|',

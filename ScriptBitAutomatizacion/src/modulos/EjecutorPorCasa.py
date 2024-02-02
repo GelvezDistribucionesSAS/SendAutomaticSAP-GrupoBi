@@ -228,6 +228,24 @@ class GenerateFiles(ReadSQL):
         data = PasarArreglo(data)
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SELLIN))
         print('Se Genero: ' + SELLIN)
+
+    #Salida JGB
+    
+    def output_products_jgb(self):
+        text = self.read_products_jgb().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.datefin)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
+        print('Se Genero: ' + SKU)
+
+    #Salida Energizer
+    
+    def output_sales_energizer(self):
+        text = self.read_sales_energizer().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
+        print('Se Genero: ' + VENTAS)
     
     #Salida de CASAS de ARAUCA
     def customerArauca(self):

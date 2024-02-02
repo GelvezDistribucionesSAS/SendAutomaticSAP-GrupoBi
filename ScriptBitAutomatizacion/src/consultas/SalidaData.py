@@ -33,6 +33,9 @@ class ReadSQL:
         self.__VENDEDORESTOTAL = 'VendedoresTotal.sql'
         self.__VENTASTOTAL = 'VentasTotal.sql'
         self.__TIPOSNEOGOCIOSTOTAL = 'TipoNegocioTotal.sql'
+        self.__PRODUCTOSJGB = 'ProductosJGB.sql'
+        self.__VENTASENERGIZER = 'VentasEnergizer.sql'
+        
         #Variables de Arauca
         self.__SKUARAUCA = 'sku.sql'
         self.__INVENTARIOARAUCA = 'Inventario.sql'
@@ -168,6 +171,18 @@ class ReadSQL:
         data = """"""
         with open(os.path.join(rutaBase, self.__TIPOSNEOGOCIOSTOTAL)) as f:
             data = f.read()  
+        return data
+    
+    def read_products_jgb(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__PRODUCTOSJGB), 'r') as f:
+            data = f.read()
+        return data
+
+    def read_sales_energizer(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__VENTASENERGIZER), 'r') as f:
+            data = f.read()
         return data
     
     #Datos de salida Arauca
