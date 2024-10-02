@@ -72,6 +72,22 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         ComprimirNestle(cu_NESTLE_212385,NestleCucuta.format(enter))
         LimpiarRuta(RutaGlobal + cu_NESTLE_212385 )
         send_FTP(ns.userFTP,ns.password,RutaGlobal,ns.house_route,NestleCucuta.format(enter))
+
+    @count_elapsed_time
+    def nestleocana():
+        ns = GenerateFiles(oc_NESTLE_213563, 154, os.getenv('USERNESTLEOCANA'), os.getenv('PASSWORDNESTLEOCANA'), '011', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        ns.output_municipality()
+        ns.output_customers()
+        ns.output_business_type()
+        ns.output_inventory()
+        ns.output_products()
+        ns.output_sales()
+        ns.output_sellers()
+        ns.output_totals()
+        ns.output_neighborhood()
+        ComprimirNestle(oc_NESTLE_213563,NestleOcana.format(enter))
+        LimpiarRuta(RutaGlobal + oc_NESTLE_213563 )
+        send_FTP(ns.userFTP,ns.password,RutaGlobal,ns.house_route,NestleOcana.format(enter)) 
     
     def cucuta_edgewell():
         be = GenerateFiles(cu_EDGEWELL_209759, 156, os.getenv('USEREDGEWELLCUCUTA'), os.getenv('PASSWORDEDGEWELLCUCUTA'), '006,030,011', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
@@ -144,6 +160,23 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,KimberlyPañCucuta.format(enter))
 
+    @count_elapsed_time        
+    def cucuta_unilever():
+        print(f"varData: {varData}, Month:{monht}, Cuacua:{datefin}")
+        be = GenerateFiles(cu_UNILEVER_213575, 0, os.getenv('USERUNILEVERCU'), os.getenv('PASSWORDUNILEVERCU'), '006','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        be.output_municipality()
+        be.output_customers_unilever()
+        be.output_business_type()
+        be.output_inventory_unilever()
+        be.output_products_unilever()
+        be.output_sales_unilever()
+        be.output_sellers_unilever()
+        be.output_totals_unilever()
+        Comprimir01(be.house_route,UnileverCucuta.format(enter))
+        LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,UnileverCucuta.format(enter))
+        
+
     def cucuta_colgate():
         be = GenerateFiles(cu_COLGATE_210973, 150, os.getenv('USERCOLGATECUCUTA'), os.getenv('PASSWORDCOLGATECUCUTA'), '006,030', 'HBTGELVEZ_CUCUTA',varData, monht, datefin)
         #print(mes, año)
@@ -157,7 +190,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         be.output_totales_colgate()
         Comprimir01(be.house_route,ColgateCucuta.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
-        send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, ColgateCucuta.format(enter))
+        #send_FTP(be.userFTP, be.password, RutaGlobal, be.house_route, ColgateCucuta.format(enter))
 
 
 
@@ -278,7 +311,22 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         ComprimirNestle(be.house_route,nestleCaliEje.format(enter))
         LimpiarRuta(RutaGlobal + be.house_route)
         send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,nestleCaliEje.format(enter))
-    
+
+    @count_elapsed_time
+    def giron_unilever():
+        be = GenerateFiles(gir_UNILEVER_213576, 0, os.getenv('USERUNILEVERGIR'), os.getenv('PASSWORDUNILEVERGIR'), '014','HBTGRANDISTRIBUIDOR',varData, monht, datefin)
+        be.output_municipality()
+        be.output_customers_unilever()
+        be.output_business_type()
+        be.output_inventory_unilever()
+        be.output_products_unilever()
+        be.output_sales_unilever()
+        be.output_sellers_unilever()
+        be.output_totals_unilever()
+        Comprimir01(be.house_route,UnileverGiron.format(enter))
+        LimpiarRuta(RutaGlobal + be.house_route)
+        send_FTP(be.userFTP,be.password,RutaGlobal,be.house_route,UnileverGiron.format(enter))
+
     def total_gelvez():
         tl = GenerateFiles(total_GELVEZ, 144, os.getenv('USERTOTALGELVEZ'), os.getenv('PASSWORDTOTALGELVEZ'), 'NullStore', 'HBTGRANDISTRIBUIDOR',varData, monht, datefin)
         tl.output_neighborhood_total()
@@ -287,7 +335,6 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         tl.output_business_type_total()
         tl.output_inventory_total()
         tl.output_products_total() #SKU
-       # tl.output_sellin_total() #
         tl.output_sales_total()
         tl.output_sellers_total()
         tl.output_totals_total()
@@ -308,6 +355,20 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         Comprimir01(a.house_route,brinsaArauca.format(enter))
         LimpiarRuta(RutaGlobal+a.house_route)
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
+
+    def unilever_Arauca():
+        a = GenerateFiles(ara_UNILEVER_213577,25,os.getenv('USERUNILEVERARA'), os.getenv('PASSWORDUNILEVERARA'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        a.customerArauca()
+        a.iventoryArauca()
+        a.skuArauca()
+        a.typeBussionesArauca()
+        a.controlTotalArauca()
+        a.salesArauca()
+        a.sellersArauca()
+        a.output_municipality()
+        Comprimir01(a.house_route,unileverArauca.format(enter))
+        LimpiarRuta(RutaGlobal+a.house_route)
+        send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, unileverArauca.format(enter))       
 
     def jgb_arauca():
         a = GenerateFiles(JGB_213376,2,os.getenv('USERJGBAR'), os.getenv('PASSWORDJGBAR'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)

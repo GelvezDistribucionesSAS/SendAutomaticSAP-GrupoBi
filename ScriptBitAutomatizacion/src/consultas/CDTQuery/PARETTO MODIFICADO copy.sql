@@ -1,0 +1,234 @@
+SELECT
+	YEAR(T1."DocDate") AS "AnioDocumento",
+	MONTH(T1."DocDate") AS "MesDocumento",
+	TO_VARCHAR(T1."DocDate", 'YYYY-MM-DD') AS "FechaDocumento",
+	T4."SeriesName" AS "SerieDocumento",
+	T1."DocNum" AS "NumeroDocumento",
+	'FV' AS "TipoDocumento",
+	T1."CardCode" AS "CodigoCliente",
+	CASE 
+		WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
+			SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
+		ELSE 
+			T1."CardName"
+	END AS "NombreCliente",
+	T5."LicTradNum" AS "NITCliente",
+	T6."GroupName" AS "GrupoCliente",
+	T3."StreetS" AS "Direccion",
+	T3."BlockS" AS "Barrio",
+	T3."U_HBT_MunMedS" AS "Cod Municipio",
+	
+
+	COALESCE(SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)), 0) AS "SumaSubTotal",
+
+	SUM(T2."VatSum") AS "SumaIVA",
+	COALESCE(SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100) + T2."VatSum"), 0) AS "SumaTotal",
+	
+	CASE
+    WHEN T1."DocTotal" = 0 THEN NULL
+    ELSE CAST((SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100) + T2."VatSum") * 100 / NULLIF(T1."DocTotal", 0)) AS DECIMAL(10, 2)) || '%'
+END AS "Porcentaje",
+
+
+
+	T1."DocTotal" AS "Total Factura",
+
+	T1."PaidToDate" as "PagadoHastaLaFecha",
+
+(CASE
+		WHEN T1."DocStatus" = 'O'
+		THEN 'Abierto'
+		ELSE 'Cerrado'
+		END
+) 
+		AS "Estado",
+
+
+	T8."ItmsGrpNam" AS "NombreGrupoProducto",
+	T1."SlpCode" AS "CodigoVendedor",
+	T11."SlpName" AS "NombreVendedor",
+	T2."WhsCode" AS "Bodega",
+    T14."WhsName" AS "NombreBodega",
+	T5."City" AS "Ciudad",
+	'NONE' AS "Motivo de devolución",
+	T13."U_GLV_CodSup" AS "Area",
+	T5."Phone1" AS "Telefono",
+	T5."Phone2" AS "Telefono 2",
+	T5."Cellular" AS "Telefono 3",
+	T5."E_Mail" AS "Email"
+FROM
+	"OINV" T1
+INNER JOIN
+	"INV1" T2 ON T1."DocEntry" = T2."DocEntry"
+INNER JOIN
+	"INV12" T3 ON T1."DocEntry" = T3."DocEntry"
+INNER JOIN
+	"NNM1" T4 ON T1."Series" = T4."Series"
+INNER JOIN
+	"OCRD" T5 ON T1."CardCode" = T5."CardCode"
+INNER JOIN
+	"OCRG" T6 ON T5."GroupCode" = T6."GroupCode"
+INNER JOIN
+	"OITM" T7 ON T2."ItemCode" = T7."ItemCode"
+INNER JOIN
+	"OITB" T8 ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
+LEFT JOIN
+	"@GD_SUBGRUPO" T9 ON T7."U_GD_SubGrupo" = T9."Code"
+LEFT JOIN
+	"@GD_FAMPRODUCTOS" T10 ON T7."U_GD_FamProducto" = T10."Code"
+INNER JOIN
+	"OSLP" T11 ON T1."SlpCode" = T11."SlpCode"
+LEFT JOIN
+	"@HBT_MUNICIPIO" T12 ON T3."U_HBT_MunMedS" = T12."Code"
+LEFT JOIN 
+	"@SIS_SUPERVISORES" T13 ON T11."U_GLV_Supervisor" = T13."DocEntry"
+LEFT JOIN
+    "OWHS" T14 ON T14."WhsCode" = T2."WhsCode"
+WHERE
+    T1."DocDate" BETWEEN '[%0]' AND '[%1]'
+GROUP BY
+T1."DocDate",
+T1."DocDate",
+T1."DocDate",
+	T4."SeriesName",
+	T1."DocNum",
+	T1."CardCode",
+T5."U_HBT_CorreoSuperv",
+T1."CardName",
+	T5."LicTradNum",
+	T6."GroupName",
+	T3."StreetS",
+	T3."BlockS",
+	T3."U_HBT_MunMedS",
+	T1."DocTotal",
+	T8."ItmsGrpNam",
+	T1."SlpCode",
+	T11."SlpName",
+	T2."WhsCode",
+	T5."City",
+	T13."U_GLV_CodSup",
+	T5."Phone1",
+	T5."Phone2",
+	T5."Cellular",
+	T5."E_Mail",
+    T14."WhsName",
+    T1."PaidToDate",
+    T1."DocStatus"
+
+UNION ALL
+
+SELECT
+	YEAR(T1."DocDate") AS "AnioDocumento",
+	MONTH(T1."DocDate") AS "MesDocumento",
+	TO_VARCHAR(T1."DocDate", 'YYYY-MM-DD') AS "FechaDocumento",
+	T4."SeriesName" AS "SerieDocumento",
+	T1."DocNum" AS "NumeroDocumento",
+	'FV' AS "TipoDocumento",
+	T1."CardCode" AS "CodigoCliente",
+	CASE 
+		WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
+			SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
+		ELSE 
+			T1."CardName"
+	END AS "NombreCliente",
+	T5."LicTradNum" AS "NITCliente",
+	T6."GroupName" AS "GrupoCliente",
+	T3."StreetS" AS "Direccion",
+	T3."BlockS" AS "Barrio",
+	T3."U_HBT_MunMedS" AS "Cod Municipio",
+
+
+
+	'-' || COALESCE(SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100)), 0) AS "SumaSubTotal",
+
+	'-' || SUM(T2."VatSum") AS "SumaIVA",
+	'-' || COALESCE(SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100) + T2."VatSum"), 0) AS "SumaTotal",
+
+CASE
+    WHEN T1."DocTotal" = 0 THEN NULL
+    ELSE CAST((SUM(T2."LineTotal" - (T2."LineTotal" * T1."DiscPrcnt" / 100) + T2."VatSum") * 100 / NULLIF(T1."DocTotal", 0)) AS DECIMAL(10, 2)) || '%'
+END AS "Porcentaje",
+
+
+
+	'-' || T1."DocTotal" AS "Total Factura",
+
+	NULL as "PagadoHastaLaFecha",
+
+(CASE
+		WHEN T1."DocStatus" = 'O'
+		THEN 'Abierto'
+		ELSE 'Cerrado'
+		END
+) 
+		AS "Estado",
+
+	T8."ItmsGrpNam" AS "NombreGrupoProducto",
+	T1."SlpCode" AS "CodigoVendedor",
+	T11."SlpName" AS "NombreVendedor",
+	T2."WhsCode" AS "Bodega",
+    T14."WhsName" AS "NombreBodega",
+	T5."City" AS "Ciudad",
+	'NONE' AS "Motivo de devolución",
+	T13."U_GLV_CodSup" AS "Area",
+	T5."Phone1" AS "Telefono",
+	T5."Phone2" AS "Telefono 2",
+	T5."Cellular" AS "Telefono 3",
+	T5."E_Mail" AS "Email"
+FROM
+	"ORIN" T1
+INNER JOIN
+	"RIN1" T2 ON T1."DocEntry" = T2."DocEntry"
+INNER JOIN
+	"RIN12" T3 ON T1."DocEntry" = T3."DocEntry"
+INNER JOIN
+	"NNM1" T4 ON T1."Series" = T4."Series"
+INNER JOIN
+	"OCRD" T5 ON T1."CardCode" = T5."CardCode"
+INNER JOIN
+	"OCRG" T6 ON T5."GroupCode" = T6."GroupCode"
+INNER JOIN
+	"OITM" T7 ON T2."ItemCode" = T7."ItemCode"
+INNER JOIN
+	"OITB" T8 ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
+LEFT JOIN
+	"@GD_SUBGRUPO" T9 ON T7."U_GD_SubGrupo" = T9."Code"
+LEFT JOIN
+	"@GD_FAMPRODUCTOS" T10 ON T7."U_GD_FamProducto" = T10."Code"
+INNER JOIN
+	"OSLP" T11 ON T1."SlpCode" = T11."SlpCode"
+LEFT JOIN
+	"@HBT_MUNICIPIO" T12 ON T3."U_HBT_MunMedS" = T12."Code"
+LEFT JOIN 
+	"@SIS_SUPERVISORES" T13 ON T11."U_GLV_Supervisor" = T13."DocEntry"
+LEFT JOIN
+    "OWHS" T14 ON T14."WhsCode" = T2."WhsCode"
+WHERE
+    T1."DocDate" BETWEEN '[%0]' AND '[%1]'
+GROUP BY
+T1."DocDate",
+T1."DocDate",
+T1."DocDate",
+	T4."SeriesName",
+	T1."DocNum",
+	T1."CardCode",
+T5."U_HBT_CorreoSuperv",
+T1."CardName",
+	T5."LicTradNum",
+	T6."GroupName",
+	T3."StreetS",
+	T3."BlockS",
+	T3."U_HBT_MunMedS",
+	T1."DocTotal",
+	T8."ItmsGrpNam",
+	T1."SlpCode",
+	T11."SlpName",
+	T2."WhsCode",
+	T5."City",
+	T13."U_GLV_CodSup",
+	T5."Phone1",
+	T5."Phone2",
+	T5."Cellular",
+	T5."E_Mail",
+    T14."WhsName",
+    T1."DocStatus"

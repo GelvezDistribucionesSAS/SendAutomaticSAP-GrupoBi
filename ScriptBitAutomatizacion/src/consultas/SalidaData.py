@@ -35,6 +35,14 @@ class ReadSQL:
         self.__TIPOSNEOGOCIOSTOTAL = 'TipoNegocioTotal.sql'
         self.__PRODUCTOSJGB = 'ProductosJGB.sql'
         self.__VENTASENERGIZER = 'VentasEnergizer.sql'
+
+        #Unilever
+        self.__CLIENTESUNILEVER = 'clientesU.sql'
+        self.__INVENTARIOUNILEVER = 'InventarioU.sql'
+        self.__PRODUCTOSUNILEVER = 'ProductosU.sql'
+        self.__VENTASUNILEVER = 'VentasU.sql'
+        self.__VENDEDORESUNILEVER = 'VendedoresU.sql'
+        self.__TOTALESUNILEVER = 'TotalesU.sql'
         
         #Variables de Arauca
         self.__SKUARAUCA = 'sku.sql'
@@ -99,6 +107,46 @@ class ReadSQL:
         with open(os.path.join(rutaBase, self.__VENTAS), 'r') as f:
             data = f.read()
         return data
+    
+# UNILEVER
+    
+    def read_customers_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__CLIENTESUNILEVER), 'r') as f:
+            data = f.read()
+        return data
+    
+    def read_inventory_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__INVENTARIOUNILEVER), 'r') as f:
+            data = f.read()
+        return data
+    
+    def read_products_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__PRODUCTOSUNILEVER), 'r') as f:
+            data = f.read()
+        return data
+        
+    def read_totals_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__TOTALESUNILEVER), 'r') as f:
+                data = f.read()
+        return data
+
+    def read_sellers_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__VENDEDORESUNILEVER), 'r') as f:
+            data = f.read()
+        return data    
+
+    def read_sales_unilever(self):
+        data = """"""
+        with open(os.path.join(rutaBase, self.__VENTASUNILEVER), 'r') as f:
+            data = f.read()
+        return data
+
+#COLGATE 
 
     def read_sales_colgate(self):
         data = """"""
@@ -143,11 +191,11 @@ class ReadSQL:
             data = f.read()
         return data 
 
-    def read_sellin_gelvez(self):
-        data = """"""
-        with open(os.path.join(rutaBase, self.__SELLIN)) as f:
-            data = f.read()
-        return data
+    # def read_sellin_gelvez(self):
+    #     data = """"""
+    #     with open(os.path.join(rutaBase, self.__SELLIN)) as f:
+    #         data = f.read()
+    #     return data
 
     def read_totals_gelvez(self):
         data = """"""

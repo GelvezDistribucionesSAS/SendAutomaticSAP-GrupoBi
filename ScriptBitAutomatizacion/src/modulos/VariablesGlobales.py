@@ -42,7 +42,7 @@ SELLIN = 'SellIn.txt'
 #Control data para Generar comprimidos
 data = [CLIENTES,INVENTARIO,MUNICIPIOS,SKU,TIPOSNEGOCIOS,TOTALES,VENDEDORES,VENTAS]
 dataNestle = [CLIENTES,INVENTARIO,MUNICIPIOS,SKU,TIPOSNEGOCIOS,TOTALES,VENDEDORES,VENTAS,BARRIOS]
-dataTotal = [CLIENTES,INVENTARIO,MUNICIPIOS,SKU,TIPOSNEGOCIOS,TOTALES,VENDEDORES,VENTAS,BARRIOS, SELLIN]
+dataTotal = [CLIENTES,INVENTARIO,MUNICIPIOS,SKU,TIPOSNEGOCIOS,TOTALES,VENDEDORES,VENTAS,BARRIOS]
 #Nombre Globales Unicaciones
 Belleza = "BELLEZAEXPRESS_210795/"
 CAL_PAÑ_KIMBERLY_210541 = "CAL_PAÑ_KIMBERLY_210541/"
@@ -51,6 +51,7 @@ cu_ENERGIZER_210760 = 'CUC_ENERGIZER_210760/'
 cu_HDV_208514 = 'CUC_HDV_208514/'
 cu_KIMBERLY_208903 = 'CUC_KIMBERLY_208903/'
 cu_NESTLE_212385 = 'CUC_NESTLE_212385/'
+oc_NESTLE_213563 = 'OCA_NESTLE_213563/'
 cu_PAÑ_KIMBERLY_209321 = 'CUC_PAÑ_KIMBERLY_209321/'
 gir_EDGWELL_211187 = 'GIR_EDGWELL_211187/'
 gir_EVEREADY_210761 = 'GIR_EVEREADY_210761/'
@@ -64,7 +65,9 @@ JGB_213528 = 'JGB_213528/'
 JGB_213529 = 'JGB_213529/'
 JGB_213376 = 'JGB_213376/'
 CDT_Kimberly = 'CDT_Kimberly/'
-
+cu_UNILEVER_213575 = 'CUC_UNILEVER_213575/'
+gir_UNILEVER_213576 = 'GIR_UNILEVER_213576/'
+ara_UNILEVER_213577 = 'ARA_UNILEVER_213577/'
 
 #Entrada de movimiento de fecha 
 VarDateSQL= " ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{})),+1) AND ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )"
@@ -133,8 +136,10 @@ HdvCucuta = 'HDV_208514_{}.zip'
 KimberlyIchCucuta = 'KIMBERLY_208903_{}.zip'
 NestleCucuta = 'NESTLE_212385_{}.zip'
 KimberlyPañCucuta = 'KIMBERLY_209321_{}.zip'
+UnileverCucuta = 'UNILEVER_213575_{}.zip'
 ColgateCucuta = 'COLGATE_210973_{}.zip'
 JGBCucuta = 'JGB_213528_{}.zip'
+NestleOcana = 'NESTLE_213563_{}.zip'
 ###################GranDistribuidor #########################################
 JGBGiron = 'JGB_213529_{}.zip'
 edgewellGiron = 'EDGEWELL_211187_{}.zip'
@@ -143,11 +148,13 @@ kimberlyIchGiron = 'KIMBERLY_209968_{}.zip'
 kimberlyPañGiron = 'KIMBERLY_210541_{}.zip'
 nestleGiron = 'NESTLE_211851_{}.zip'
 nestleCaliEje = 'NESTLE_212587_{}.zip'
+UnileverGiron = 'UNILEVER_213576_{}.zip'
 ##################TotalGelvez##############################################
 totalGelvez = 'GELVEZ_212401_{}.zip'
 
 #######################ARAUCA############################################
 brinsaArauca = 'BRINSA_213173_{}.zip'
 JGBArauca = 'JGB_213376_{}.zip'
+unileverArauca = 'UNILEVER_213577_{}.zip'
 
        

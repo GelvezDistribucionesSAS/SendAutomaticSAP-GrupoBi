@@ -39,7 +39,12 @@ FROM
 
 		T5."CardCode" AS "CodPos",
 
-		T5."CardName" AS "Nombre",
+		CASE 
+			WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
+				SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
+			ELSE 
+				T5."CardName"
+		END AS "Nombre",
 
         T7."SalUnitMsr" AS "TipoMedida", 
 
@@ -299,7 +304,12 @@ UNION ALL
 
 		T5."CardCode" AS "CodPos",
 
-		T5."CardName" AS "Nombre",
+		CASE 
+			WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
+				SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
+			ELSE 
+				T5."CardName"
+		END AS "Nombre",
 
         T7."SalUnitMsr" AS "TipoMedida", 
 

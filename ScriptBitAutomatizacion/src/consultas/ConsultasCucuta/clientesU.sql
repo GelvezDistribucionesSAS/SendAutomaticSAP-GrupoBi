@@ -3,24 +3,7 @@ SELECT
 SELECT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	IFNULL(
-        REPLACE(
-            REPLACE(
-                CASE 
-                    WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
-                        SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
-                    ELSE 
-                        T1."CardName"
-                END,
-                '\n', 
-                ' '
-            ), 
-            '\r', 
-            ' '
-        ),
-        'NN'
-    )
- || '#' ||
+	IFNULL(REPLACE(REPLACE(T5."CardName", '\n', ' '), '\r', ' '),'NN') || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
@@ -69,33 +52,16 @@ WHERE
 
 	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 
-	AND T8."ItmsGrpCod" = {0}
+
 AND T2."WhsCode" IN ({1})
+	AND T8."ItmsGrpCod" IN ('149', '152')
 
 UNION ALL
 
 SELECT
 	--	CLIENTE
 	(T1."CardCode" || '#' ||
-	--IFNULL(REPLACE(REPLACE(T5."CardName", '\n', ' '), '\r', ' '),'NN') 
-	IFNULL(
-        REPLACE(
-            REPLACE(
-                CASE 
-                    WHEN T5."U_HBT_CorreoSuperv" = '742000PS' THEN
-                        SUBSTR(T1."CardName", 1, INSTR(T1."CardName", ' ') - 1) || ' S.A.S'
-                    ELSE 
-                        T1."CardName"
-                END,
-                '\n', 
-                ' '
-            ), 
-            '\r', 
-            ' '
-        ),
-        'NN'
-    )
-	|| '#' ||
+	IFNULL(REPLACE(REPLACE(T5."CardName", '\n', ' '), '\r', ' '),'NN') || '#' ||
 	TO_VARCHAR(IFNULL(T5."U_FECHA_CLIENTE",T5."CreateDate"), 'YYYYMMDD') || '#' ||
 	T5."LicTradNum" || '#' ||
 	CONCAT(IFNULL(T3."StreetS",' '),CONCAT(' ',IFNULL(T3."BlockS",'Principal Gelvez')))|| '#' ||
@@ -144,5 +110,5 @@ WHERE
 
 	T1."DocDate" BETWEEN {3}--ADD_DAYS(LAST_DAY(ADD_MONTHS(CURRENT_DATE, -{3})),+1) AND  ADD_DAYS(TO_VARCHAR(CURRENT_DATE,'YYYYMMDD'), -1 )
 
-	AND T8."ItmsGrpCod" = {0}
+	AND T8."ItmsGrpCod" IN ('149', '152')
 AND T2."WhsCode" IN ({1})) AS "TA"

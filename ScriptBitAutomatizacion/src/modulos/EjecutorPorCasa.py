@@ -87,6 +87,52 @@ class GenerateFiles(ReadSQL):
     
     #Salidas especiales
 
+
+#Salidas Unilever
+
+    def output_customers_unilever(self):
+        text =self.read_customers_unilever().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + CLIENTES))
+        print('Se genero: ' + CLIENTES)
+    
+    def output_inventory_unilever(self):
+        text =self.read_inventory_unilever().format(self.number_house, self.store, self.schemeDB,self.datefin)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data,os.path.join(RutaGlobal,self.house_route + INVENTARIO))
+        print('Se Genero: ' + INVENTARIO)
+    
+    def output_totals_unilever(self):
+        text = self.read_totals_unilever().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + TOTALES))
+        print('Se Genero: ' + TOTALES)
+
+    def output_sellers_unilever(self):
+        text = self.read_sellers_unilever().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENDEDORES))
+        print('Se Genero: ' + VENDEDORES)
+    
+    def output_sales_unilever(self):
+        text = self.read_sales_unilever().format(self.number_house, self.store, self.schemeDB, self.DateEnter)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + VENTAS))
+        print('Se Genero: ' + VENTAS)
+
+    def output_products_unilever(self):
+        text = self.read_products_unilever().format(self.number_house, self.store, self.schemeDB, self.DateEnter, self.datefin)
+        data = conexion(text.replace('#','{'))
+        data = PasarArreglo(data)
+        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
+        print('Se Genero: ' + SKU)
+
+
 #Salida de colgate
     def output_inventory_colgate(self):
         text =self.read_inventory_colgate().format(self.number_house, self.store, self.schemeDB, self.datefin)
@@ -138,7 +184,7 @@ class GenerateFiles(ReadSQL):
         text = self.read_control_arauca()
         data2 = conectMantis(text)
         data2 = PasarArreglo(data2)
-        result = float(data[0]) + float(data2[0])
+        result = float(0) + float(data2[0])
         print(result)
         result = [str('TotalValorVenta{'+str(result))]
         GuardarTexto(result, os.path.join(RutaGlobal, self.house_route + TOTALES))
@@ -222,12 +268,12 @@ class GenerateFiles(ReadSQL):
         GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SKU))
         print('Se Genero: ' + SKU)
     
-    def output_sellin_total(self):
-        text = self.read_sellin_gelvez().format(self.DateEnter)
-        data = conexion(text.replace('#','{'))
-        data = PasarArreglo(data)
-        GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SELLIN))
-        print('Se Genero: ' + SELLIN)
+    # def output_sellin_total(self):
+    #     text = self.read_sellin_gelvez().format(self.DateEnter)
+    #     data = conexion(text.replace('#','{'))
+    #     data = PasarArreglo(data)
+    #     GuardarTexto(data, os.path.join(RutaGlobal, self.house_route + SELLIN))
+    #     print('Se Genero: ' + SELLIN)
 
     #Salida JGB
     
