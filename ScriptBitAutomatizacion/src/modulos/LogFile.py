@@ -343,7 +343,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         send_FTP(tl.userFTP,tl.password,RutaGlobal,tl.house_route,totalGelvez.format(enter))
 
     def brisan_Arauca():
-        a = GenerateFiles(Ara_BRINSA,1,os.getenv('USERBRINSA'), os.getenv('PASSWORDBRINSA'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        a = GenerateFiles(Ara_BRINSA,1,os.getenv('USERBRINSA'), os.getenv('PASSWORDBRINSA'),'NullStore','HBTGELVEZ_CUCUTA',varData, mes, datefin)
         a.customerArauca()
         a.iventoryArauca()
         a.skuArauca()
@@ -357,7 +357,7 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, brinsaArauca.format(enter))
 
     def unilever_Arauca():
-        a = GenerateFiles(ara_UNILEVER_213577,25,os.getenv('USERUNILEVERARA'), os.getenv('PASSWORDUNILEVERARA'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        a = GenerateFiles(ara_UNILEVER_213577,25,os.getenv('USERUNILEVERARA'), os.getenv('PASSWORDUNILEVERARA'),'NullStore','HBTGELVEZ_CUCUTA',varData, mes, datefin)
         a.customerArauca()
         a.iventoryArauca()
         a.skuArauca()
@@ -371,7 +371,8 @@ condiciòn: Define el llamado desde el diccionario a que casa pertene  la consul
         send_FTP(a.userFTP, a.password, RutaGlobal, a.house_route, unileverArauca.format(enter))       
 
     def jgb_arauca():
-        a = GenerateFiles(JGB_213376,2,os.getenv('USERJGBAR'), os.getenv('PASSWORDJGBAR'),'NullStore','HBTGELVEZ_CUCUTA',varData, monht, datefin)
+        print(monht)
+        a = GenerateFiles(JGB_213376,2,os.getenv('USERJGBAR'), os.getenv('PASSWORDJGBAR'),'NullStore','HBTGELVEZ_CUCUTA',varData, mes, datefin)
         a.customerArauca()
         a.iventoryArauca()
         a.skuArauca()

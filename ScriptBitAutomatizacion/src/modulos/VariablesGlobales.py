@@ -115,6 +115,7 @@ def control():
         dateformat = datefin.strftime("%d/%m/%Y")
         print(enter)
         print(datefin)
+        print(mes)
         return VarFormat, InvetoryValidor, enter , mes, years, datefin.strftime("%Y%m%d"), dateinit.strftime("%Y%m%d"), dateformat
     else: 
         dateinit = input('Fecha incial: ')

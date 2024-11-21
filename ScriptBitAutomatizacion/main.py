@@ -13,7 +13,7 @@ def main():
     #ExecutionHouse.cucuta_HDV()
     #ExecutionHouse.cucuta_unilever()
     #ExecutionHouse.giron_edgwell()
-    ExecutionHouse.cucuta_colgate()
+    #ExecutionHouse.cucuta_colgate()
     #ExecutionHouse.jgb_cucuta()
     #ExecutionHouse.jgb_giron()
     ExecutionHouse.jgb_arauca()
